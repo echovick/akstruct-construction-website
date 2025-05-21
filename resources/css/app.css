@@ -1,0 +1,368 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+/* Import third-party CSS */
+@import 'aos/dist/aos.css';
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+    /* Akstruct Brand Colors */
+    --color-primary: #1e3a54;
+    --color-primary-dark: #0f2133;
+    --color-primary-light: #315a82;
+    
+    --color-secondary: #59c1cc;
+    --color-secondary-dark: #3b9ba5;
+    --color-secondary-light: #8feef9;
+
+    --color-accent: #ffa726;
+    --color-accent-dark: #e69220;
+    --color-accent-light: #ffbd5c;
+
+    --color-stone: #f5f5f0;
+    --color-stone-dark: #e0e0d8;
+
+    /* Accent is based on primary */
+    --color-accent: var(--color-primary);
+    --color-accent-content: var(--color-primary);
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-secondary);
+        --color-accent-content: var(--color-secondary);
+        --color-accent-foreground: var(--color-primary-dark);
+    }
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        @apply font-body antialiased text-gray-800;
+        overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        color: var(--color-primary-dark);
+        @apply tracking-tight;
+    }
+    
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl mb-6;
+    }
+    
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl mb-5;
+    }
+    
+    h3 {
+        @apply text-2xl md:text-3xl mb-4;
+    }
+    
+    h4 {
+        @apply text-xl md:text-2xl mb-3;
+    }
+    
+    a {
+        @apply transition-colors duration-300 ease-in-out;
+    }
+    
+    p {
+        @apply mb-4 leading-relaxed;
+    }
+}
+
+/* Section Styling */
+.section {
+    @apply py-16 md:py-24;
+}
+
+.section-title {
+    @apply text-center mb-12 md:mb-16;
+}
+
+.section-title h2 {
+    @apply relative inline-block font-bold;
+}
+
+.section-title h2:after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-secondary rounded-full mt-2;
+}
+
+/* Button Styles */
+.btn {
+    @apply inline-block px-6 py-3 rounded-lg transition-all duration-300 font-medium text-center;
+}
+
+.btn-primary {
+    @apply bg-primary text-white hover:bg-primary-light shadow-md hover:shadow-lg transform hover:-translate-y-1;
+}
+
+.btn-secondary {
+    @apply bg-secondary text-primary-dark hover:bg-secondary-dark shadow-md hover:shadow-lg transform hover:-translate-y-1;
+}
+
+.btn-accent {
+    @apply bg-accent text-white hover:bg-accent-dark shadow-md hover:shadow-lg transform hover:-translate-y-1;
+}
+
+.btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white shadow-sm hover:shadow-md transform hover:-translate-y-1;
+}
+
+.btn-ghost {
+    @apply bg-transparent text-primary border border-transparent hover:border-primary shadow-none;
+}
+
+/* Card Styles */
+.card {
+    @apply bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden hover:shadow-lg;
+}
+
+/* Hero Section */
+.hero-section {
+    @apply relative min-h-[600px] flex items-center;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero-overlay {
+    @apply absolute inset-0 bg-primary-dark/60;
+}
+
+.hero-content {
+    @apply relative z-10 text-white py-20;
+}
+
+/* Service Card */
+.service-card {
+    @apply flex flex-col h-full transition-transform duration-300 hover:-translate-y-2;
+}
+
+.service-card-icon {
+    @apply text-secondary text-4xl mb-4;
+}
+
+/* Project Card */
+.project-card {
+    @apply relative overflow-hidden;
+}
+
+.project-card:hover .project-card-image {
+    @apply scale-110;
+}
+
+.project-card-image {
+    @apply w-full h-64 object-cover transition-transform duration-500 transform;
+}
+
+.project-card:hover .project-card-overlay {
+    @apply bg-primary-dark/80 opacity-100;
+}
+
+.project-card-overlay {
+    @apply absolute inset-0 bg-primary-dark/0 transition-all duration-300 flex items-center justify-center opacity-0;
+}
+
+.project-card-content {
+    @apply text-white text-center p-6;
+}
+
+/* Testimonial Styles */
+.testimonial-card {
+    @apply p-6 rounded-xl bg-white shadow-md;
+}
+
+.testimonial-quote {
+    @apply text-primary-light text-4xl mb-4;
+}
+
+.testimonial-author {
+    @apply flex items-center mt-4;
+}
+
+.testimonial-author-image {
+    @apply w-12 h-12 rounded-full mr-4 object-cover;
+}
+
+/* Stats Counter */
+.stats-section {
+    @apply bg-primary-dark text-white py-16;
+}
+
+.stat-item {
+    @apply text-center p-6;
+}
+
+.stat-value {
+    @apply text-5xl font-bold text-secondary mb-2;
+}
+
+.stat-label {
+    @apply text-xl;
+}
+
+/* CTA Section */
+.cta-section {
+    @apply bg-stone py-16 rounded-lg shadow-md my-16;
+}
+
+/* Form Styles */
+.form-group {
+    @apply mb-6;
+}
+
+.form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    @apply w-full rounded-lg border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary/50;
+}
+
+/* Modern Form Input Animations */
+.input-animated {
+    @apply relative;
+}
+
+.input-animated input,
+.input-animated textarea {
+    @apply w-full pt-5 pb-2 px-3 border-b-2 border-gray-300 bg-transparent focus:border-secondary focus:outline-none;
+}
+
+.input-animated label {
+    @apply absolute left-3 top-4 text-gray-500 transition-all duration-200 pointer-events-none;
+}
+
+.input-animated input:focus ~ label,
+.input-animated input:not(:placeholder-shown) ~ label,
+.input-animated textarea:focus ~ label,
+.input-animated textarea:not(:placeholder-shown) ~ label {
+    @apply text-xs text-secondary transform -translate-y-4;
+}
+
+/* Footer Styles */
+.footer {
+    @apply bg-primary-dark text-white pt-16 pb-6;
+}
+
+.footer-title {
+    @apply text-lg font-semibold mb-4 text-white;
+}
+
+.footer-link {
+    @apply text-gray-300 hover:text-secondary transition-colors;
+}
+
+.social-icon {
+    @apply text-gray-300 hover:text-secondary transition-colors;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+}
+
+.hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
+}
+
+/* Utility Classes */
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.bg-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary;
+}
+
+.backdrop-blur {
+    @apply backdrop-filter backdrop-blur-lg;
+}
+
+/* AOS custom animations */
+[data-aos="custom-fade-up"] {
+    transform: translateY(30px);
+    opacity: 0;
+    transition-property: transform, opacity;
+}
+
+[data-aos="custom-fade-up"].aos-animate {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Swiper customization */
+.swiper-pagination-bullet {
+    @apply bg-secondary opacity-70;
+}
+
+.swiper-pagination-bullet-active {
+    @apply bg-secondary opacity-100;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    @apply text-secondary;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+/* Additional Animation Keyframes */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* WCAG compliance for focus states */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    @apply outline-none ring-2 ring-secondary ring-offset-2;
+}
