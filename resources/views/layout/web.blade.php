@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app-Bapl2Iy-.css') }}">
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -506,7 +507,7 @@
             }
         });
     </script>
-
+    <script src="{{ asset('build/assets/app-C8v_h5bs.js') }}"></script>
     @livewireScripts
 </body>
 
