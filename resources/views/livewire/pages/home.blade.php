@@ -80,7 +80,7 @@ new #[Layout('layout.web')] class extends Component {
                 </h1>
                 <p class="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">{{ $heroSubtitle }}</p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#" class="btn btn-secondary text-center">
+                    <a href="{{ route('project-portfolio') }}" class="btn btn-secondary text-center">
                         <span>Explore Projects</span>
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
