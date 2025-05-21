@@ -186,8 +186,8 @@
                                 class="block py-2.5 px-4 rounded-lg hover:bg-stone/50 text-sm {{ request()->routeIs('services*') ? 'text-secondary border-l-2 border-secondary pl-3 font-medium' : 'text-primary' }}">
                                 Services
                             </a>
-                            <a href="#"
-                                class="block py-2.5 px-4 rounded-lg hover:bg-stone/50 text-sm {{ request()->routeIs('projects*') ? 'text-secondary border-l-2 border-secondary pl-3 font-medium' : 'text-primary' }}">
+                            <a href="{{ route('project-portfolio') }}"
+                                class="block py-2.5 px-4 rounded-lg hover:bg-stone/50 text-sm {{ request()->routeIs('project-portfolio*') ? 'text-secondary border-l-2 border-secondary pl-3 font-medium' : 'text-primary' }}">
                                 Projects
                             </a>
                             <a href="{{ route('blog') }}"
