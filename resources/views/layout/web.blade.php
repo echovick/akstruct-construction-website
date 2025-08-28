@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('build/assets/app-Bapl2Iy-.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/app-H3U-qfKK.css') }}">
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
