@@ -10,6 +10,7 @@ Volt::route('/about', 'pages.about')->name('about');
 Volt::route('/services', 'pages.services')->name('services');
 Volt::route('/project-portfolio', 'pages.project-portfolio')->name('project-portfolio');
 Volt::route('/services/{service}', 'pages.service-detail')->name('services.show');
+Volt::route('/projects/hh-guzape', 'pages.hh-guzape-project')->name('projects.hh-guzape');
 Volt::route('/projects/{project}', 'pages.project-detail')->name('projects.show');
 Volt::route('/contact', 'pages.contact')->name('contact');
 
@@ -36,46 +37,72 @@ Volt::route('/privacy-policy', 'pages.privacy-policy')->name('privacy-policy');
 Volt::route('/terms-of-service', 'pages.terms-of-service')->name('terms-of-service');
 
 // Admin routes (optional - protected by authentication)
-Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Volt::route('/', 'admin.dashboard')->name('dashboard');
+Route::middleware(['guest'])->prefix('admin')->group(function () {
+    Volt::route('/', 'admin.dashboard')->name('admin.dashboard');
 
-    // Projects management
-    Route::get('/projects', \App\Livewire\Admin\Projects\Index::class)->name('projects.index');
-    Route::get('/projects/create', \App\Livewire\Admin\Projects\Form::class)->name('projects.create');
-    Route::get('/projects/{project}/edit', \App\Livewire\Admin\Projects\Form::class)->name('projects.edit');
+    // Projects
+    Volt::route('/projects/overview', 'admin.projects.overview')->name('admin.projects.overview');
+    Volt::route('/projects/create', 'admin.projects.create')->name('admin.projects.create');
+    Volt::route('/projects/{project}/edit', 'admin.projects.edit')->name('admin.projects.edit');
+    Volt::route('/projects/categories', 'admin.projects.categories')->name('admin.projects.categories');
 
-    // Services management
-    Volt::route('/services', 'admin.services.index')->name('services.index');
-    Volt::route('/services/create', 'admin.services.create')->name('services.create');
-    Volt::route('/services/{service}/edit', 'admin.services.edit')->name('services.edit');
+    // Services
+    Volt::route('/services', 'admin.services.overview')->name('admin.services.overview');
+    Volt::route('/services/create', 'admin.services.create')->name('admin.services.create');
+    Volt::route('/services/{service}/edit', 'admin.services.edit')->name('admin.services.edit');
 
-    // Testimonials management
-    Volt::route('/testimonials', 'admin.testimonials.index')->name('testimonials.index');
-    Volt::route('/testimonials/create', 'admin.testimonials.create')->name('testimonials.create');
-    Volt::route('/testimonials/{testimonial}/edit', 'admin.testimonials.edit')->name('testimonials.edit');
+    // Pages
+    Route::get('/pages', \App\Livewire\Admin\Pages\Overview::class)->name('admin.pages.overview');
+    Route::get('/pages/create', \App\Livewire\Admin\Pages\Create::class)->name('admin.pages.create');
+    Route::get('/pages/{page}/edit', \App\Livewire\Admin\Pages\Edit::class)->name('admin.pages.edit');
 
-    // Blog management
-    Volt::route('/blog', 'admin.blog.index')->name('blog.index');
-    Volt::route('/blog/create', 'admin.blog.create')->name('blog.create');
-    Volt::route('/blog/{blog}/edit', 'admin.blog.edit')->name('blog.edit');
+    // Blog
+    Volt::route('/blog', 'admin.blog.overview')->name('admin.blog.overview');
+    Volt::route('/blog/create', 'admin.blog.create')->name('admin.blog.create');
+    Volt::route('/blog/{blog}/edit', 'admin.blog.overview.edit')->name('admin.blog.overview.edit');
+    Volt::route('/blog/categories', 'admin.blog.categories')->name('admin.blog.categories');
 
-    // FAQs management
-    Volt::route('/faqs', 'admin.faqs.index')->name('faqs.index');
-    Volt::route('/faqs/create', 'admin.faqs.create')->name('faqs.create');
-    Volt::route('/faqs/{faq}/edit', 'admin.faqs.edit')->name('faqs.edit');
+    // Team
+    Volt::route('/team', 'admin.team')->name('admin.team');
+    Volt::route('/team/create', 'admin.team.create')->name('admin.team.create');
+    Volt::route('/team/{team}/edit', 'admin.team.edit')->name('admin.team.edit');
 
-    // Careers management
-    Volt::route('/careers', 'admin.careers.index')->name('careers.index');
-    Volt::route('/careers/create', 'admin.careers.create')->name('careers.create');
-    Volt::route('/careers/{career}/edit', 'admin.careers.edit')->name('careers.edit');
+    // Job Listings
+    Volt::route('/job-listings', 'admin.job-listings')->name('admin.job-listings');
+    Volt::route('/job-listings/create', 'admin.job-listings.create')->name('admin.job-listings.create');
+    Volt::route('/job-listings/{job-listing}/edit', 'admin.job-listings.edit')->name('admin.job-listings.edit');
+    Volt::route('/job-listings/applications', 'admin.job-listings.applications')->name('admin.job-listings.all-applications');
+    Volt::route('/job-listings/{job-listing}/applications', 'admin.job-listings.applications')->name('admin.job-listings.applications');
 
-    // Quotes management
-    Volt::route('/quotes', 'admin.quotes.index')->name('quotes.index');
-    Volt::route('/quotes/{quote}', 'admin.quotes.show')->name('quotes.show');
+    // Media Library
+    Volt::route('/media-library', 'admin.media-library')->name('admin.media-library');
+
+    // Users & Permissions
+    Volt::route('/users', 'admin.users')->name('admin.users');
+    Volt::route('/roles', 'admin.roles')->name('admin.roles');
+    Volt::route('/permissions', 'admin.permissions')->name('admin.permissions');
 
     // Settings
-    Volt::route('/settings', 'admin.settings')->name('settings');
+    Volt::route('/general', 'admin.general')->name('admin.general');
+    Volt::route('/seo', 'admin.seo')->name('admin.seo');
+    Volt::route('/social-media', 'admin.social-media')->name('admin.social-media');
+    Volt::route('/contact', 'admin.contact')->name('admin.contact');
 });
+
+// Blog Routes
+// Route::prefix('admin/blog')->middleware(['auth'])->group(function () {
+//     Route::get('/', \App\Livewire\Admin\Blog\Overview::class)->name('admin.blog.overview');
+//     Route::get('/create', \App\Livewire\Admin\Blog\Create::class)->name('admin.blog.create');
+//     Route::get('/{id}/edit', \App\Livewire\Admin\Blog\Edit::class)->name('admin.blog.overview.edit');
+//     Route::get('/categories', \App\Livewire\Admin\Blog\Categories::class)->name('admin.blog.categories');
+// });
+
+// Admin Team Management
+// Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+//     Route::get('/team', \App\Livewire\Admin\Team\Overview::class)->name('team.overview');
+//     Route::get('/team/create', \App\Livewire\Admin\Team\Create::class)->name('team.create');
+//     Route::get('/team/{id}/edit', \App\Livewire\Admin\Team\Edit::class)->name('team.edit');
+// });
 
 Route::get('/artisan/optimize', function () {
     Artisan::call('optimize:clear');

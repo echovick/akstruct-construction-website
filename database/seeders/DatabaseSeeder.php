@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
 
         // Call all other seeders
         $this->call([
+            PageSeeder::class,
             SettingSeeder::class,
             ServiceSeeder::class,
             ProjectSeeder::class,

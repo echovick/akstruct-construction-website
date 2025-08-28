@@ -1,455 +1,541 @@
 <?php
 
-use App\Models\Project;
-use App\Models\Setting;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Layout;
 
 new #[Layout('layout.web')] class extends Component {
-    public $project;
-
-    public function mount($slug)
-    {
-        $this->project = Project::where('slug', $slug)->firstOrFail();
-    }
-
-    public function with(): array
-    {
-        // Get related projects in the same category
-        $relatedProjects = Project::where('category', $this->project->category)->where('id', '!=', $this->project->id)->take(3)->get();
-
-        return [
-            'relatedProjects' => $relatedProjects,
-            'projectsCompleted' => Setting::getValue('stats_projects_completed', '150'),
-        ];
-    }
+    
 }; ?>
 
 <div>
     <!-- Hero Section with Project Image -->
-    <section class="relative bg-primary-dark text-white overflow-hidden">
-        <!-- Background image with overlay -->
-        <div class="absolute inset-0 z-0">
-            @php
-                // Use project image if available, otherwise use a default image
-                $projectImages = [
-                    'assets/IMG_7140.jpg',
-                    'assets/IMG_7141.jpg',
-                    'assets/IMG_7143.JPG',
-                    'assets/IMG_7144.JPG',
-                    'assets/IMG_7145.jpg',
-                    'assets/IMG_7147.jpg',
-                ];
-                $backgroundImage = $projectImages[array_rand($projectImages)];
-            @endphp
-            <img src="{{ asset($backgroundImage) }}" alt="{{ $project->title }}"
-                class="w-full h-full object-cover object-center">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/90 to-primary/70"></div>
-        </div>
-
-        <!-- Floating elements (similar to homepage) -->
-        <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-            <div class="absolute top-24 left-10 w-32 h-32 bg-secondary/20 rounded-full filter blur-xl animate-pulse">
-            </div>
-            <div class="absolute bottom-24 right-10 w-40 h-40 bg-accent/20 rounded-full filter blur-xl animate-pulse"
-                style="animation-delay: 1s;"></div>
-            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-primary-light/20 rounded-full filter blur-xl animate-pulse"
-                style="animation-delay: 2s;"></div>
-            <div class="absolute top-1/4 right-1/5 w-16 h-16 bg-white/10 rounded-md rotate-12 animate-float"
-                style="animation-delay: 0.5s;"></div>
-            <div class="absolute bottom-1/3 left-1/4 w-12 h-12 bg-secondary/10 rounded-full animate-float"
-                style="animation-delay: 1.5s;"></div>
-        </div>
-
-        <!-- Hero Content -->
-        <div class="relative z-20 container mx-auto px-4 py-28">
-            <div class="max-w-3xl" data-aos="fade-right" data-aos-duration="1000">
-                <div class="mb-6">
-                    <span class="bg-accent text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
-                        {{ $project->category }}
-                    </span>
-                </div>
-                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight">
-                    {{ $project->title }}
+    <section class="relative h-[60vh] bg-gray-900 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop" 
+             alt="Modern Office Building" 
+             class="w-full h-full object-cover opacity-70">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-16">
+            <div class="max-w-7xl mx-auto">
+                <span class="inline-block px-4 py-2 bg-orange-500 text-white text-sm font-semibold rounded-full mb-4">
+                    Commercial Buildings
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+                    Skyline Business Center
                 </h1>
-                <p class="text-xl text-white/90 mb-8 leading-relaxed">
-                    {{ $project->short_description ?? Str::limit($project->description, 160) }}
-                </p>
-
-                <!-- Project info badges -->
-                <div class="flex flex-wrap gap-4 mb-8">
-                    <div class="bg-white/10 backdrop-blur-sm py-2 px-4 rounded-lg flex items-center">
-                        <i class="fas fa-map-marker-alt text-secondary mr-2"></i>
-                        <span>{{ $project->location }}</span>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm py-2 px-4 rounded-lg flex items-center">
-                        <i class="fas fa-calendar-alt text-secondary mr-2"></i>
-                        <span>{{ $project->year }}</span>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm py-2 px-4 rounded-lg flex items-center">
-                        <i class="fas fa-tag text-secondary mr-2"></i>
-                        <span>{{ $project->status ?? 'Completed' }}</span>
-                    </div>
-                </div>
-
-                <!-- Breadcrumb navigation -->
-                <nav class="flex" aria-label="Breadcrumb">
-                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                        <li class="inline-flex items-center">
-                            <a href="{{ route('home') }}"
-                                class="inline-flex items-center text-white hover:text-secondary">
-                                <i class="fas fa-home mr-2"></i>
-                                Home
-                            </a>
-                        </li>
-                        <li class="inline-flex items-center">
-                            <div class="flex items-center">
-                                <i class="fas fa-chevron-right text-white/50 mx-2"></i>
-                                <a href="{{ route('projects') }}" class="text-white hover:text-secondary">
-                                    Projects
-                                </a>
-                            </div>
-                        </li>
-                        <li aria-current="page">
-                            <div class="flex items-center">
-                                <i class="fas fa-chevron-right text-white/50 mx-2"></i>
-                                <span class="text-white/80">{{ $project->title }}</span>
-                            </div>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Detail Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <!-- Project content - left wide column -->
-                <div class="lg:col-span-2">
-                    <!-- Project Gallery -->
-                    <div class="mb-12" data-aos="fade-up">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            @php
-                                $galleryImages = [
-                                    'assets/IMG_7140.jpg',
-                                    'assets/IMG_7141.jpg',
-                                    'assets/IMG_7143.JPG',
-                                    'assets/IMG_7144.JPG',
-                                ];
-                            @endphp
-
-                            <!-- Main large image -->
-                            <div class="md:col-span-2">
-                                <div class="rounded-xl overflow-hidden shadow-lg h-96">
-                                    <img src="{{ asset('assets/IMG_7147.jpg') }}" alt="{{ $project->title }}"
-                                        class="w-full h-full object-cover">
-                                </div>
-                            </div>
-
-                            <!-- Smaller gallery images -->
-                            @foreach ($galleryImages as $index => $image)
-                                <div class="rounded-xl overflow-hidden shadow-lg h-48">
-                                    <img src="{{ asset($image) }}"
-                                        alt="{{ $project->title }} - Image {{ $index + 1 }}"
-                                        class="w-full h-full object-cover">
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <!-- Project Description -->
-                    <div data-aos="fade-up" data-aos-delay="100">
-                        <h2 class="font-heading font-bold text-3xl mb-6">Project Overview</h2>
-                        <div class="prose prose-lg max-w-none text-gray-700 mb-8">
-                            <p>{{ $project->description }}</p>
-
-                            <!-- If we don't have actual content, generate some dummy paragraphs -->
-                            @if (strlen($project->description) < 300)
-                                <p>This project exemplifies Akstruct Construction's commitment to quality craftsmanship
-                                    and sustainable building practices. From the initial design phase to final
-                                    construction, our team worked closely with the client to ensure all requirements
-                                    were met while incorporating innovative solutions.</p>
-
-                                <p>The design incorporates several sustainable features including energy-efficient
-                                    systems, locally sourced materials, and optimal space utilization. These elements
-                                    not only reduce the environmental impact but also provide long-term cost savings for
-                                    the building operators.</p>
-                            @endif
-                        </div>
-
-                        <!-- Project Highlights -->
-                        <div class="mb-10">
-                            <h3 class="font-bold text-2xl mb-4">Project Highlights</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="flex items-start">
-                                    <div class="bg-secondary/10 rounded-full p-2 mr-4">
-                                        <i class="fas fa-check text-secondary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-medium text-lg">Sustainable Materials</h4>
-                                        <p class="text-gray-600">Eco-friendly and locally sourced materials were used
-                                            throughout the construction</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="bg-secondary/10 rounded-full p-2 mr-4">
-                                        <i class="fas fa-check text-secondary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-medium text-lg">Energy Efficiency</h4>
-                                        <p class="text-gray-600">State-of-the-art systems to minimize energy consumption
-                                            and reduce costs</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="bg-secondary/10 rounded-full p-2 mr-4">
-                                        <i class="fas fa-check text-secondary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-medium text-lg">Innovative Design</h4>
-                                        <p class="text-gray-600">Modern architectural elements balanced with practical
-                                            functionality</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="bg-secondary/10 rounded-full p-2 mr-4">
-                                        <i class="fas fa-check text-secondary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-medium text-lg">On-Time Delivery</h4>
-                                        <p class="text-gray-600">Project completed within the specified timeline and
-                                            budget constraints</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Project Statistics -->
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-                            <div class="bg-stone p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-secondary mb-1">{{ $project->area ?? '1,500' }} m²
-                                </div>
-                                <div class="text-sm text-gray-500">Total Area</div>
-                            </div>
-                            <div class="bg-stone p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-secondary mb-1">{{ $project->duration ?? '18' }}
-                                    months</div>
-                                <div class="text-sm text-gray-500">Duration</div>
-                            </div>
-                            <div class="bg-stone p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-secondary mb-1">{{ $project->floors ?? '6' }}</div>
-                                <div class="text-sm text-gray-500">Floors</div>
-                            </div>
-                            <div class="bg-stone p-4 rounded-xl text-center">
-                                <div class="text-2xl font-bold text-secondary mb-1">
-                                    {{ $project->completed ?? '100%' }}</div>
-                                <div class="text-sm text-gray-500">Completion</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar - right column -->
-                <div class="lg:col-span-1">
-                    <div class="sticky top-32">
-                        <!-- Project meta information -->
-                        <div class="bg-stone rounded-xl p-6 mb-8 shadow-md" data-aos="fade-left">
-                            <h3 class="font-bold text-xl mb-4 border-b border-gray-200 pb-2">Project Details</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="text-gray-500 text-sm">Client</div>
-                                    <div class="font-medium">{{ $project->client ?? 'Confidential' }}</div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-500 text-sm">Location</div>
-                                    <div class="font-medium">{{ $project->location }}</div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-500 text-sm">Completion Year</div>
-                                    <div class="font-medium">{{ $project->year }}</div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-500 text-sm">Project Type</div>
-                                    <div class="font-medium">{{ $project->category }}</div>
-                                </div>
-                                <div>
-                                    <div class="text-gray-500 text-sm">Status</div>
-                                    <div class="font-medium">{{ $project->status ?? 'Completed' }}</div>
-                                </div>
-                            </div>
-
-                            <div class="mt-6">
-                                <h4 class="font-medium mb-2 text-gray-700">Share This Project</h4>
-                                <div class="flex space-x-3">
-                                    <a href="#"
-                                        class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-700">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#"
-                                        class="bg-blue-400 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-blue-500">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#"
-                                        class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-700">
-                                        <i class="fab fa-pinterest-p"></i>
-                                    </a>
-                                    <a href="#"
-                                        class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-700">
-                                        <i class="fab fa-whatsapp"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CTA Box -->
-                        <div class="bg-primary-dark rounded-xl p-6 text-white shadow-xl overflow-hidden relative"
-                            data-aos="fade-left" data-aos-delay="100">
-                            <!-- Decorative elements -->
-                            <div
-                                class="absolute -top-10 -right-10 w-32 h-32 bg-secondary/30 rounded-full filter blur-xl">
-                            </div>
-                            <div
-                                class="absolute -bottom-10 -left-10 w-32 h-32 bg-accent/30 rounded-full filter blur-xl">
-                            </div>
-
-                            <div class="relative z-10">
-                                <h3 class="font-bold text-xl mb-3">Have a Similar Project?</h3>
-                                <p class="text-white/80 mb-6">Let's discuss how we can bring your vision to life with
-                                    our sustainable construction solutions.</p>
-                                <div class="flex flex-col space-y-3">
-                                    <a href="{{ route('quote') }}"
-                                        class="btn bg-white text-primary-dark hover:bg-gray-100">
-                                        <span>Request a Quote</span>
-                                        <i class="fas fa-file-invoice ml-2"></i>
-                                    </a>
-                                    <a href="{{ route('contact') }}"
-                                        class="btn bg-transparent border border-white text-white hover:bg-white/10">
-                                        <span>Contact Us</span>
-                                        <i class="fas fa-arrow-right ml-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Related Projects Section -->
-    <section class="py-20 bg-stone relative overflow-hidden">
-        <!-- Background pattern for visual interest -->
-        <div class="absolute inset-0 bg-pattern opacity-5 z-0"
-            style="background-image: url('{{ asset('assets/img/pattern.svg') }}');"></div>
-
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16">
-                <span class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block"
-                    data-aos="fade-down">MORE PROJECTS</span>
-                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4" data-aos="fade-up">Related Projects</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Explore other projects in the {{ $project->category }} category
+                <p class="text-xl text-gray-200 max-w-3xl">
+                    A state-of-the-art commercial complex featuring sustainable design and modern architecture
                 </p>
             </div>
-
-            <!-- Related Projects Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                @if (count($relatedProjects) > 0)
-                    @foreach ($relatedProjects as $index => $relatedProject)
-                        <div class="project-card rounded-xl shadow-xl overflow-hidden group" data-aos="fade-up"
-                            data-aos-delay="{{ $index * 100 }}">
-                            <div class="relative h-72 overflow-hidden">
-                                @php
-                                    // Use different images for each project or fallback to default images
-                                    $projectImages = [
-                                        'assets/IMG_7140.jpg',
-                                        'assets/IMG_7141.jpg',
-                                        'assets/IMG_7144.JPG',
-                                    ];
-                                    $imageIndex = $index % count($projectImages);
-                                @endphp
-                                <img src="{{ asset($projectImages[$imageIndex]) }}"
-                                    alt="{{ $relatedProject->title }}"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
-                                </div>
-                                <div class="absolute inset-0 flex flex-col justify-end p-6">
-                                    <div
-                                        class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                                        <div
-                                            class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md">
-                                            {{ $relatedProject->category }}
-                                        </div>
-                                        <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
-                                            {{ $relatedProject->title }}
-                                        </h3>
-                                        <p class="mb-4 text-white/90 drop-shadow-md line-clamp-2">
-                                            {{ $relatedProject->description }}
-                                        </p>
-                                        <a href="{{ isset($relatedProject) && $relatedProject->slug ? route('projects.show', $relatedProject) : '#' }}"
-                                            class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl">
-                                            View Project
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <!-- If no related projects, show a message -->
-                    <div class="col-span-full text-center py-12">
-                        <div class="text-gray-400 mb-4">
-                            <i class="fas fa-folder-open text-5xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2">No Related Projects</h3>
-                        <p class="text-gray-600 mb-6">Currently there are no other projects in this category.</p>
-                        <a href="{{ route('projects') }}" class="btn btn-primary">
-                            <span>Explore All Projects</span>
-                            <i class="fas fa-th ml-2"></i>
-                        </a>
-                    </div>
-                @endif
-            </div>
-
-            <!-- Back to all projects button -->
-            <div class="text-center" data-aos="fade-up">
-                <a href="{{ route('projects') }}" class="btn btn-outline-primary">
-                    <i class="fas fa-arrow-left mr-2"></i>
-                    <span>Back to All Projects</span>
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Project Inquiry CTA Section -->
+    <!-- Project Overview -->
     <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="bg-primary rounded-2xl shadow-lg overflow-hidden relative">
-                <div class="absolute inset-0 z-0">
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-secondary/20 rounded-full filter blur-3xl"></div>
-                    <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full filter blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Project Overview</h2>
+                    <div class="prose prose-lg text-gray-600 max-w-none">
+                        <p>
+                            The Skyline Business Center represents a pinnacle of modern commercial architecture, 
+                            seamlessly blending functionality with aesthetic excellence. This 25-story tower 
+                            stands as a testament to innovative design principles and sustainable construction practices.
+                        </p>
+                        <p>
+                            Located in the heart of the business district, this project encompasses 150,000 square feet 
+                            of premium office space, featuring floor-to-ceiling windows that maximize natural light 
+                            and provide panoramic city views. The building's distinctive glass facade incorporates 
+                            advanced solar control technology, reducing energy consumption by 40% compared to 
+                            traditional designs.
+                        </p>
+                        <p>
+                            Our team meticulously planned every aspect of this development, from the reinforced 
+                            foundation system capable of withstanding seismic activity to the rooftop garden that 
+                            serves as both a recreational space and a natural cooling system. The integration of 
+                            smart building technology allows for automated climate control, security, and lighting 
+                            systems, creating an intelligent workspace for the 21st century.
+                        </p>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Key Features</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">LEED Platinum Certified</h4>
+                                    <p class="text-gray-600">Highest level of green building certification</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Smart Building Systems</h4>
+                                    <p class="text-gray-600">IoT-enabled automation and control</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Earthquake Resistant</h4>
+                                    <p class="text-gray-600">Advanced seismic protection systems</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <svg class="w-6 h-6 text-orange-500 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Rooftop Garden</h4>
+                                    <p class="text-gray-600">5,000 sq ft of green recreational space</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
-                    <div class="md:w-2/3">
-                        <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-4">Ready to Start Your
-                            Next Project?</h2>
-                        <p class="text-white/80 text-lg mb-0">Contact our team today to discuss your construction needs
-                            and how we can help bring your vision to life.</p>
+                <!-- Project Details Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-50 rounded-lg p-8 sticky top-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Project Details</h3>
+                        <dl class="space-y-4">
+                            <div class="border-b border-gray-200 pb-4">
+                                <dt class="text-sm font-medium text-gray-500">Client</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">Global Corporate Holdings</dd>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <dt class="text-sm font-medium text-gray-500">Location</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">Lagos, Nigeria</dd>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <dt class="text-sm font-medium text-gray-500">Project Type</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">Commercial Building</dd>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <dt class="text-sm font-medium text-gray-500">Area</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">150,000 sq ft</dd>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <dt class="text-sm font-medium text-gray-500">Duration</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">24 months</dd>
+                            </div>
+                            <div class="border-b border-gray-200 pb-4">
+                                <dt class="text-sm font-medium text-gray-500">Completion</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">December 2023</dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500">Project Value</dt>
+                                <dd class="mt-1 text-lg font-semibold text-gray-900">₦2.5 Billion</dd>
+                            </div>
+                        </dl>
+
+                        <!-- CTA Buttons -->
+                        <div class="mt-8 space-y-3">
+                            <button class="w-full bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+                                Download Brochure
+                            </button>
+                            <button class="w-full border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:border-gray-400 transition">
+                                Request Similar Project
+                            </button>
+                        </div>
                     </div>
-                    <div class="md:w-1/3 flex flex-col space-y-4">
-                        <a href="{{ route('quote') }}" class="btn bg-white text-primary hover:bg-gray-100 w-full">
-                            Request a Quote
-                        </a>
-                        <a href="{{ route('contact') }}"
-                            class="btn bg-secondary text-white hover:bg-secondary-dark w-full">
-                            Contact Us
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery -->
+    <section class="py-16 bg-gray-50" x-data="galleryLightbox()">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Project Gallery</h2>
+            
+            <!-- Normal Grid Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div @click="openLightbox(0)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/1a365d/ffffff?text=Building+Exterior" 
+                         alt="Building Exterior" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/1a365d/ffffff?text=Building+Exterior'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(1)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/2d3748/ffffff?text=Office+Interior" 
+                         alt="Office Interior" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/2d3748/ffffff?text=Office+Interior'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(2)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/4a5568/ffffff?text=Conference+Room" 
+                         alt="Conference Room" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/4a5568/ffffff?text=Conference+Room'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(3)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/718096/ffffff?text=Office+Space" 
+                         alt="Office Space" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/718096/ffffff?text=Office+Space'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(4)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/ed8936/ffffff?text=Building+Facade" 
+                         alt="Building Facade" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/ed8936/ffffff?text=Building+Facade'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(5)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/38a169/ffffff?text=Rooftop+View" 
+                         alt="Rooftop View" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/38a169/ffffff?text=Rooftop+View'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(6)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/2563eb/ffffff?text=Night+View" 
+                         alt="Night View" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/2563eb/ffffff?text=Night+View'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(7)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/7c3aed/ffffff?text=Lobby+Area" 
+                         alt="Lobby Area" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/7c3aed/ffffff?text=Lobby+Area'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div @click="openLightbox(8)" class="relative group cursor-pointer overflow-hidden rounded-lg bg-gray-200">
+                    <img src="https://via.placeholder.com/800x600/dc2626/ffffff?text=Architectural+Detail" 
+                         alt="Architectural Detail" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                         onerror="this.src='https://via.placeholder.com/800x600/dc2626/ffffff?text=Architectural+Detail'">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightbox Modal -->
+        <div x-show="isOpen" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             @click="closeLightbox()"
+             @keydown.escape.window="closeLightbox()"
+             class="fixed inset-0 z-50 bg-black bg-opacity-95 flex items-center justify-center p-4">
+            
+            <!-- Close Button -->
+            <button @click="closeLightbox()" 
+                    class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <!-- Navigation Arrows -->
+            <button @click.stop="previousImage()" 
+                    class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition bg-black bg-opacity-50 rounded-full p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            
+            <button @click.stop="nextImage()" 
+                    class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition bg-black bg-opacity-50 rounded-full p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+            
+            <!-- Image Container -->
+            <div @click.stop class="relative max-w-7xl max-h-[90vh] mx-auto">
+                <img :src="currentImage.src" 
+                     :alt="currentImage.alt"
+                     class="max-w-full max-h-[90vh] object-contain"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 transform scale-95"
+                     x-transition:enter-end="opacity-100 transform scale-100">
+                
+                <!-- Image Caption -->
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <p class="text-white text-lg font-semibold" x-text="currentImage.alt"></p>
+                    <p class="text-gray-300 text-sm mt-1" x-text="`${currentIndex + 1} / ${images.length}`"></p>
+                </div>
+            </div>
+            
+            <!-- Thumbnail Strip -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full px-4">
+                <template x-for="(image, index) in images" :key="index">
+                    <button @click.stop="setCurrentImage(index)" 
+                            :class="{'ring-2 ring-white': currentIndex === index}"
+                            class="flex-shrink-0 w-16 h-16 rounded overflow-hidden opacity-70 hover:opacity-100 transition">
+                        <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover">
+                    </button>
+                </template>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function galleryLightbox() {
+            return {
+                isOpen: false,
+                currentIndex: 0,
+                images: [
+                    { src: 'https://via.placeholder.com/1920x1080/1a365d/ffffff?text=Building+Exterior', alt: 'Building Exterior' },
+                    { src: 'https://via.placeholder.com/1920x1080/2d3748/ffffff?text=Office+Interior', alt: 'Office Interior' },
+                    { src: 'https://via.placeholder.com/1920x1080/4a5568/ffffff?text=Conference+Room', alt: 'Conference Room' },
+                    { src: 'https://via.placeholder.com/1920x1080/718096/ffffff?text=Office+Space', alt: 'Office Space' },
+                    { src: 'https://via.placeholder.com/1920x1080/ed8936/ffffff?text=Building+Facade', alt: 'Building Facade' },
+                    { src: 'https://via.placeholder.com/1920x1080/38a169/ffffff?text=Rooftop+View', alt: 'Rooftop View' },
+                    { src: 'https://via.placeholder.com/1920x1080/2563eb/ffffff?text=Night+View', alt: 'Night View' },
+                    { src: 'https://via.placeholder.com/1920x1080/7c3aed/ffffff?text=Lobby+Area', alt: 'Lobby Area' },
+                    { src: 'https://via.placeholder.com/1920x1080/dc2626/ffffff?text=Architectural+Detail', alt: 'Architectural Detail' }
+                ],
+                get currentImage() {
+                    return this.images[this.currentIndex];
+                },
+                openLightbox(index) {
+                    this.currentIndex = index;
+                    this.isOpen = true;
+                    document.body.style.overflow = 'hidden';
+                },
+                closeLightbox() {
+                    this.isOpen = false;
+                    document.body.style.overflow = 'auto';
+                },
+                nextImage() {
+                    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                },
+                previousImage() {
+                    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                },
+                setCurrentImage(index) {
+                    this.currentIndex = index;
+                }
+            }
+        }
+    </script>
+
+    <!-- Technical Specifications -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Technical Specifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Structural System</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Reinforced concrete frame</li>
+                        <li>• Post-tensioned slabs</li>
+                        <li>• Deep pile foundation</li>
+                        <li>• Seismic dampers</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">MEP Systems</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• VRF air conditioning</li>
+                        <li>• LED lighting throughout</li>
+                        <li>• Backup power generators</li>
+                        <li>• Fire suppression system</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Sustainability Features</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Solar panels (500kW)</li>
+                        <li>• Rainwater harvesting</li>
+                        <li>• Double-glazed windows</li>
+                        <li>• Energy recovery systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Timeline -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Project Timeline</h2>
+            <div class="relative">
+                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-orange-500"></div>
+                <div class="space-y-8">
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                            Q1
+                        </div>
+                        <div class="ml-8 bg-white rounded-lg p-6 flex-1">
+                            <h3 class="font-semibold text-gray-900">Project Initiation & Design</h3>
+                            <p class="text-gray-600 mt-1">Conceptual design, permits, and site preparation</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                            Q2
+                        </div>
+                        <div class="ml-8 bg-white rounded-lg p-6 flex-1">
+                            <h3 class="font-semibold text-gray-900">Foundation & Structure</h3>
+                            <p class="text-gray-600 mt-1">Deep foundation work and structural frame construction</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                            Q3
+                        </div>
+                        <div class="ml-8 bg-white rounded-lg p-6 flex-1">
+                            <h3 class="font-semibold text-gray-900">MEP & Facade Installation</h3>
+                            <p class="text-gray-600 mt-1">Mechanical, electrical, plumbing systems and exterior cladding</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
+                            Q4
+                        </div>
+                        <div class="ml-8 bg-white rounded-lg p-6 flex-1">
+                            <h3 class="font-semibold text-gray-900">Finishing & Handover</h3>
+                            <p class="text-gray-600 mt-1">Interior finishing, testing, and project completion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Projects -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8">Related Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1565623006066-82f23c79210b?w=600&h=400&fit=crop" 
+                         alt="Tech Hub Plaza" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-orange-500 text-sm font-semibold">Commercial</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">Tech Hub Plaza</h3>
+                        <p class="text-gray-600 mt-2">Modern technology park with co-working spaces</p>
+                        <a href="#" class="inline-flex items-center text-orange-500 font-semibold mt-4 hover:text-orange-600">
+                            View Project
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
                         </a>
                     </div>
                 </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?w=600&h=400&fit=crop" 
+                         alt="Marina Towers" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-orange-500 text-sm font-semibold">Mixed Use</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">Marina Towers</h3>
+                        <p class="text-gray-600 mt-2">Luxury waterfront development with retail spaces</p>
+                        <a href="#" class="inline-flex items-center text-orange-500 font-semibold mt-4 hover:text-orange-600">
+                            View Project
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1481026469463-66327c86e544?w=600&h=400&fit=crop" 
+                         alt="Financial District Tower" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-orange-500 text-sm font-semibold">Commercial</span>
+                        <h3 class="text-xl font-bold text-gray-900 mt-2">Financial District Tower</h3>
+                        <p class="text-gray-600 mt-2">Premium office complex in the business district</p>
+                        <a href="#" class="inline-flex items-center text-orange-500 font-semibold mt-4 hover:text-orange-600">
+                            View Project
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-orange-500">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">
+                Have a Similar Project in Mind?
+            </h2>
+            <p class="text-xl text-orange-100 mb-8">
+                Let's discuss how we can bring your vision to life with our expertise and innovation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/contact" class="bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Start Your Project
+                </a>
+                <a href="/project-portfolio" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-500 transition">
+                    View All Projects
+                </a>
             </div>
         </div>
     </section>

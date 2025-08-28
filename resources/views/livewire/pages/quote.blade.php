@@ -60,8 +60,8 @@ new #[Layout('layout.web')] class extends Component {
             $quote->save();
 
             // Send notification email to admin and confirmation email to user
-            // Mail::to(config('mail.admin_email'))->send(new QuoteRequestNotification($quote));
-            // Mail::to($this->email)->send(new QuoteRequestConfirmation($quote));
+            Mail::to('akstructltd@gmail.com')->send(new QuoteRequestNotification($quote));
+            Mail::to($this->email)->send(new QuoteRequestConfirmation($quote));
 
             $this->reset(['name', 'email', 'phone', 'company', 'projectType', 'budgetRange', 'location', 'projectDescription', 'timeline', 'documents']);
             $this->successMessage = 'Your quote request has been submitted successfully. Our team will contact you shortly.';

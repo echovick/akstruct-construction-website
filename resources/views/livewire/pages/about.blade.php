@@ -239,13 +239,44 @@ new #[Layout('layout.web')] class extends Component {
                 <!-- Team Member 1 - CEO -->
                 <div class="group" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative rounded-xl overflow-hidden shadow-lg mb-5">
-                        <img src="{{ asset('assets/Team5.jpg') }}" alt="John Doe - CEO"
+                        <img src="{{ asset('assets/Team5.jpg') }}"
+                            alt=" ENGR. AMOS ADAMU KWARI, R.ENG( COREN), MNSE, MIAENG. - CEO"
                             class="w-full h-80 object-cover object-center transform transition-transform duration-500 group-hover:scale-110">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-6">
                             <!-- Social links -->
                             <div class="flex space-x-3 mb-4">
-                                <a href="#"
+                                <a href="https://www.linkedin.com/in/amos-adamu-kwari-98649682?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                                    class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://www.instagram.com/kwari_amos/profilecard/?igsh=ZzZ4YmYza3FlNjM0"
+                                    class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                {{-- <a href="#"
+                                    class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
+                                    <i class="fas fa-envelope"></i>
+                                </a> --}}
+                            </div>
+                            <p class="text-white/80 text-sm">With over 8years of experience in sustainable
+                                construction, Engr. Amos leads our team with a focus on innovation and excellence</p>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">Amos
+                        Adamu Kwari, R.Eng (Coren), Mnse, Miaeng.</h3>
+                    <p class="text-gray-600">Chief Executive Officer</p>
+                </div>
+
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative rounded-xl overflow-hidden shadow-lg mb-5">
+                        <img src="{{ asset('assets/Team2.jpg') }}" alt="Michael Chen - CTO"
+                            class="w-full h-80 object-contain object-center transform transition-transform duration-500 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-6">
+                            <!-- Social links -->
+                            <div class="flex space-x-3 mb-4">
+                                {{-- <a href="#"
                                     class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
@@ -256,27 +287,27 @@ new #[Layout('layout.web')] class extends Component {
                                 <a href="#"
                                     class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
                                     <i class="fas fa-envelope"></i>
-                                </a>
+                                </a> --}}
                             </div>
-                            <p class="text-white/80 text-sm">With over 15 years of experience in sustainable
-                                construction, John leads our team with a focus on innovation and excellence.</p>
+                            {{-- <p class="text-white/80 text-sm">Michael brings cutting-edge technology to our construction
+                                practices, implementing innovative solutions that enhance sustainability.</p> --}}
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">John
-                        Doe</h3>
-                    <p class="text-gray-600">Chief Executive Officer</p>
+                    <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">
+                        John Victor Uzezie, R.Eng (COREN)</h3>
+                    <p class="text-gray-600">Chief Operating Officer</p>
                 </div>
 
                 <!-- Team Member 2 - COO -->
                 <div class="group" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative rounded-xl overflow-hidden shadow-lg mb-5">
                         <img src="{{ asset('assets/Team1.jpg') }}" alt="Sarah Johnson - COO"
-                            class="w-full h-80 object-cover object-center transform transition-transform duration-500 group-hover:scale-110">
+                            class="w-full h-80 object-contain object-center transform transition-transform duration-500 group-hover:scale-110">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-6">
                             <!-- Social links -->
                             <div class="flex space-x-3 mb-4">
-                                <a href="#"
+                                {{-- <a href="#"
                                     class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
@@ -287,46 +318,15 @@ new #[Layout('layout.web')] class extends Component {
                                 <a href="#"
                                     class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
                                     <i class="fas fa-envelope"></i>
-                                </a>
+                                </a> --}}
                             </div>
-                            <p class="text-white/80 text-sm">Sarah oversees our day-to-day operations, ensuring
-                                efficiency and quality across all projects and departments.</p>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">Sarah
-                        Johnson</h3>
-                    <p class="text-gray-600">Chief Operations Officer</p>
-                </div>
-
-                <!-- Team Member 3 - CTO -->
-                <div class="group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative rounded-xl overflow-hidden shadow-lg mb-5">
-                        <img src="{{ asset('assets/Team2.jpg') }}" alt="Michael Chen - CTO"
-                            class="w-full h-80 object-cover object-center transform transition-transform duration-500 group-hover:scale-110">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-6">
-                            <!-- Social links -->
-                            <div class="flex space-x-3 mb-4">
-                                <a href="#"
-                                    class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#"
-                                    class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#"
-                                    class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </div>
-                            <p class="text-white/80 text-sm">Michael brings cutting-edge technology to our construction
-                                practices, implementing innovative solutions that enhance sustainability.</p>
+                            {{-- <p class="text-white/80 text-sm">Sarah oversees our day-to-day operations, ensuring
+                                efficiency and quality across all projects and departments.</p> --}}
                         </div>
                     </div>
                     <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">
-                        Michael Chen</h3>
-                    <p class="text-gray-600">Chief Technology Officer</p>
+                        Suleiman Musa Ndirmbita, R.Eng (COREN)</h3>
+                    <p class="text-gray-600">HSE / Project Manager</p>
                 </div>
 
                 <!-- Team Member 4 - Design Director -->
@@ -338,7 +338,7 @@ new #[Layout('layout.web')] class extends Component {
                             class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-300 flex flex-col justify-end p-6">
                             <!-- Social links -->
                             <div class="flex space-x-3 mb-4">
-                                <a href="#"
+                                {{-- <a href="#"
                                     class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
@@ -349,15 +349,15 @@ new #[Layout('layout.web')] class extends Component {
                                 <a href="#"
                                     class="bg-white/20 hover:bg-white/40 p-2 rounded-full text-white transition-colors">
                                     <i class="fas fa-envelope"></i>
-                                </a>
+                                </a> --}}
                             </div>
-                            <p class="text-white/80 text-sm">Amina leads our design team with a passion for creating
-                                spaces that are both aesthetically pleasing and environmentally responsible.</p>
+                            {{-- <p class="text-white/80 text-sm">Amina leads our design team with a passion for creating
+                                spaces that are both aesthetically pleasing and environmentally responsible.</p> --}}
                         </div>
                     </div>
-                    <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">Amina
-                        Osei</h3>
-                    <p class="text-gray-600">Design Director</p>
+                    <h3 class="text-xl font-bold text-primary-dark group-hover:text-secondary transition-colors">AUDU
+                        SUNDAY I</h3>
+                    <p class="text-gray-600">Site Engineer</p>
                 </div>
             </div>
 
@@ -400,59 +400,13 @@ new #[Layout('layout.web')] class extends Component {
 
             <!-- Modern certificates layout with hover effects -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                <!-- ISO 9001 -->
+                <!-- COREN -->
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
                     data-aos="fade-up" data-aos-delay="100">
                     <div
                         class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('assets/img/certifications/iso-9001.svg') }}" alt="ISO 9001"
-                            class="h-16">
-                    </div>
-                    <div class="text-center">
-                        <p
-                            class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
-                            ISO 9001</p>
-                        <p class="text-gray-600 text-sm">Quality Management System</p>
-                    </div>
-                </div>
-
-                <!-- ISO 14001 -->
-                <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div
-                        class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('assets/img/certifications/iso-14001.svg') }}" alt="ISO 14001"
-                            class="h-16">
-                    </div>
-                    <div class="text-center">
-                        <p
-                            class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
-                            ISO 14001</p>
-                        <p class="text-gray-600 text-sm">Environmental Management</p>
-                    </div>
-                </div>
-
-                <!-- LEED -->
-                <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
-                    data-aos="fade-up" data-aos-delay="300">
-                    <div
-                        class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('assets/img/certifications/leed.svg') }}" alt="LEED" class="h-16">
-                    </div>
-                    <div class="text-center">
-                        <p
-                            class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
-                            LEED</p>
-                        <p class="text-gray-600 text-sm">Green Building Certification</p>
-                    </div>
-                </div>
-
-                <!-- COREN -->
-                <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
-                    data-aos="fade-up" data-aos-delay="400">
-                    <div
-                        class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('assets/img/certifications/coren.svg') }}" alt="COREN" class="h-16">
+                        <i
+                            class="fas fa-certificate text-4xl text-primary-dark group-hover:text-secondary transition-colors"></i>
                     </div>
                     <div class="text-center">
                         <p
@@ -462,19 +416,67 @@ new #[Layout('layout.web')] class extends Component {
                     </div>
                 </div>
 
-                <!-- OHSAS 18001 -->
+                <!-- NSE -->
                 <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
-                    data-aos="fade-up" data-aos-delay="500">
+                    data-aos="fade-up" data-aos-delay="200">
                     <div
                         class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
-                        <img src="{{ asset('assets/img/certifications/ohsas-18001.svg') }}" alt="OHSAS 18001"
-                            class="h-16">
+                        <i
+                            class="fas fa-user-tie text-4xl text-primary-dark group-hover:text-secondary transition-colors"></i>
                     </div>
                     <div class="text-center">
                         <p
                             class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
-                            OHSAS 18001</p>
-                        <p class="text-gray-600 text-sm">Occupational Health and Safety</p>
+                            NSE</p>
+                        <p class="text-gray-600 text-sm">Nigerian Society of Engineers</p>
+                    </div>
+                </div>
+
+                <!-- IAENG -->
+                <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
+                        <i
+                            class="fas fa-globe text-4xl text-primary-dark group-hover:text-secondary transition-colors"></i>
+                    </div>
+                    <div class="text-center">
+                        <p
+                            class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
+                            IAENG</p>
+                        <p class="text-gray-600 text-sm">International Association of Engineers</p>
+                    </div>
+                </div>
+
+                <!-- HSE -->
+                <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
+                        <i
+                            class="fas fa-shield-alt text-4xl text-primary-dark group-hover:text-secondary transition-colors"></i>
+                    </div>
+                    <div class="text-center">
+                        <p
+                            class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
+                            HSE</p>
+                        <p class="text-gray-600 text-sm">Health, Safety & Environment Certification</p>
+                    </div>
+                </div>
+
+                <!-- Project Management -->
+                <div class="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-2 group"
+                    data-aos="fade-up" data-aos-delay="500">
+                    <div
+                        class="p-2 rounded-lg bg-gray-50 transition-colors duration-300 group-hover:bg-secondary/10 flex items-center justify-center mb-4">
+                        <i
+                            class="fas fa-project-diagram text-4xl text-primary-dark group-hover:text-secondary transition-colors"></i>
+                    </div>
+                    <div class="text-center">
+                        <p
+                            class="font-bold text-primary-dark mb-1 group-hover:text-secondary transition-colors duration-300">
+                            PMP</p>
+                        <p class="text-gray-600 text-sm">Project Management Professional</p>
                     </div>
                 </div>
             </div>

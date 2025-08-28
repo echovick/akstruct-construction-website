@@ -255,154 +255,109 @@ new #[Layout('layout.web')] class extends Component {
                 <span class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block"
                     data-aos="fade-down">SHOWCASE</span>
                 <h2 class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4" data-aos="fade-up">Featured
-                    Projects</h2>
+                    Project</h2>
                 <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Highlighting our most innovative and impactful sustainable construction projects
+                    Highlighting our flagship sustainable construction project
                 </p>
             </div>
 
-            <!-- Featured Projects in an engaging layout -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                @if (isset($featuredProjects[0]))
-                    @php $project = $featuredProjects[0]; @endphp
-                    <!-- First featured project (larger) -->
-                    <div class="md:col-span-7 group relative overflow-hidden rounded-xl shadow-xl h-[500px]"
-                        data-aos="fade-right">
-                        <div class="absolute inset-0 overflow-hidden">
-                            <img src="{{ asset('assets/IMG_7147.jpg') }}"
-                                alt="{{ $project->title ?? 'Featured Project' }}"
-                                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
-                            </div>
+            <!-- Single Featured Project in Hero Layout -->
+            <div class="max-w-6xl mx-auto">
+                <!-- HH II GUZAPE Project -->
+                <div class="group relative overflow-hidden rounded-xl shadow-xl h-[600px]"
+                    data-aos="fade-up">
+                    <div class="absolute inset-0 overflow-hidden">
+                        <img src="{{ asset('assets/IMG_7147.jpg') }}"
+                            alt="HH II GUZAPE"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/60 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
                         </div>
-                        <div class="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                    </div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                        <div
+                            class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
                             <div
-                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                                <div
-                                    class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-4 shadow-md">
-                                    {{ $project->category->name ?? 'Commercial' }}
+                                class="bg-accent inline-block px-4 py-2 text-sm font-semibold rounded mb-6 shadow-md">
+                                Residential Development
+                            </div>
+                            <h3 class="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-md">
+                                HH II GUZAPE
+                            </h3>
+                            <p class="mb-8 text-white/90 drop-shadow-md max-w-3xl text-lg leading-relaxed">
+                                Our flagship residential development in the prestigious Guzape district of Abuja. This project exemplifies our commitment to sustainable construction practices, innovative design, and environmental responsibility while delivering exceptional living spaces.
+                            </p>
+                            <div class="flex flex-wrap justify-between items-center gap-4">
+                                <div class="flex flex-wrap gap-4 text-sm text-white">
+                                    <span
+                                        class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
+                                        <i class="fas fa-map-marker-alt mr-2"></i>
+                                        Guzape, Abuja
+                                    </span>
+                                    <span
+                                        class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
+                                        <i class="fas fa-calendar mr-2"></i>
+                                        2024
+                                    </span>
+                                    <span
+                                        class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
+                                        <i class="fas fa-building mr-2"></i>
+                                        Residential Complex
+                                    </span>
                                 </div>
-                                <h3 class="text-3xl font-bold mb-3 text-white drop-shadow-md">
-                                    {{ $project->title ?? 'Modern Office Complex' }}</h3>
-                                <p class="mb-6 text-white/90 drop-shadow-md max-w-2xl">
-                                    {{ $project->description ?? 'A state-of-the-art commercial building featuring sustainable materials, energy-efficient systems, and smart building technology. This project demonstrates our commitment to environmental responsibility while delivering exceptional functionality.' }}
-                                </p>
-                                <div class="flex justify-between items-center">
-                                    <div class="flex space-x-4 text-sm text-white">
-                                        <span
-                                            class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-3 py-1 rounded">
-                                            <i class="fas fa-map-marker-alt mr-2"></i>
-                                            {{ $project->location ?? 'Abuja, Nigeria' }}
-                                        </span>
-                                        <span
-                                            class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-3 py-1 rounded">
-                                            <i class="fas fa-calendar mr-2"></i>
-                                            {{ $project->year ?? '2023' }}
-                                        </span>
-                                    </div>
-                                    <a href="{{ isset($project) && isset($project->slug) ? route('projects.show', $project) : '#' }}"
-                                        class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl">
-                                        View Project
-                                    </a>
-                                </div>
+                                <a href="{{ route('projects.hh-guzape') }}"
+                                    class="btn btn-secondary shadow-lg hover:shadow-xl">
+                                    View Project Details
+                                </a>
                             </div>
                         </div>
                     </div>
-                @endif
+                </div>
+            </div>
 
-                <div class="md:col-span-5 flex flex-col gap-8">
-                    @if (isset($featuredProjects[1]))
-                        @php $project = $featuredProjects[1]; @endphp
-                        <!-- Second featured project -->
-                        <div class="group relative overflow-hidden rounded-xl shadow-xl h-[240px]"
-                            data-aos="fade-left" data-aos-delay="100">
-                            <div class="absolute inset-0 overflow-hidden">
-                                <img src="{{ asset('assets/IMG_7145.jpg') }}"
-                                    alt="{{ $project->title ?? 'Featured Project' }}"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
-                                </div>
-                            </div>
-                            <div class="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                                <div
-                                    class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                                    <div
-                                        class="bg-accent inline-block px-2 py-0.5 text-xs font-semibold rounded mb-2 shadow-md">
-                                        {{ $project->category->name ?? 'Residential' }}
-                                    </div>
-                                    <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
-                                        {{ $project->title ?? 'Luxury Residential Complex' }}</h3>
-                                    <div class="flex justify-between items-center">
-                                        <div class="flex space-x-2 text-xs text-white">
-                                            <span
-                                                class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-2 py-0.5 rounded">
-                                                {{ $project->location ?? 'Abuja, Nigeria' }}
-                                            </span>
-                                        </div>
-                                        <a href="{{ isset($project) && isset($project->slug) ? route('projects.show', $project) : '#' }}"
-                                            class="text-secondary hover:text-white transition-colors">
-                                            View Details <i class="fas fa-arrow-right ml-1"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+            <!-- Project Gallery Showcase -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('assets/IMG_7145.jpg') }}" alt="HH II GUZAPE - Construction Phase"
+                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h4 class="text-lg font-bold">Construction Phase</h4>
+                        <p class="text-sm text-white/90">Foundation & Structure</p>
+                    </div>
+                </div>
 
-                    @if (isset($featuredProjects[2]))
-                        @php $project = $featuredProjects[2]; @endphp
-                        <!-- Third featured project -->
-                        <div class="group relative overflow-hidden rounded-xl shadow-xl h-[240px]"
-                            data-aos="fade-left" data-aos-delay="200">
-                            <div class="absolute inset-0 overflow-hidden">
-                                <img src="{{ asset('assets/IMG_7141.jpg') }}"
-                                    alt="{{ $project->title ?? 'Featured Project' }}"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
-                                </div>
-                            </div>
-                            <div class="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                                <div
-                                    class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                                    <div
-                                        class="bg-accent inline-block px-2 py-0.5 text-xs font-semibold rounded mb-2 shadow-md">
-                                        {{ $project->category->name ?? 'Industrial' }}
-                                    </div>
-                                    <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
-                                        {{ $project->title ?? 'Manufacturing Facility' }}</h3>
-                                    <div class="flex justify-between items-center">
-                                        <div class="flex space-x-2 text-xs text-white">
-                                            <span
-                                                class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-2 py-0.5 rounded">
-                                                {{ $project->location ?? 'Abuja, Nigeria' }}
-                                            </span>
-                                        </div>
-                                        <a href="{{ isset($project) && isset($project->slug) ? route('projects.show', $project) : '#' }}"
-                                            class="text-secondary hover:text-white transition-colors">
-                                            View Details <i class="fas fa-arrow-right ml-1"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up" data-aos-delay="200">
+                    <img src="{{ asset('assets/IMG_7141.jpg') }}" alt="HH II GUZAPE - Design Elements"
+                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h4 class="text-lg font-bold">Design Excellence</h4>
+                        <p class="text-sm text-white/90">Modern Architecture</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up" data-aos-delay="300">
+                    <img src="{{ asset('assets/IMG_7143.JPG') }}" alt="HH II GUZAPE - Finishing"
+                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h4 class="text-lg font-bold">Quality Finishing</h4>
+                        <p class="text-sm text-white/90">Premium Details</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Video Showcase -->
             <div class="mt-16 bg-stone p-8 rounded-xl shadow-lg" data-aos="fade-up">
-                <h3 class="text-2xl font-bold mb-6 text-center">Project Highlights Video</h3>
+                <h3 class="text-2xl font-bold mb-6 text-center">HH II GUZAPE Project Video</h3>
                 <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-xl">
                     <video class="w-full h-full object-cover" poster="{{ asset('assets/IMG_7143.JPG') }}" controls>
                         <source src="{{ asset('assets/Akstruct (Guzape site).MP4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <p class="text-center mt-4 text-gray-600">Experience our construction excellence through this showcase
-                    of our recent projects</p>
+                <p class="text-center mt-4 text-gray-600">Take a virtual tour of our HH II GUZAPE project and see our construction excellence in action</p>
             </div>
         </div>
     </section>
@@ -727,15 +682,12 @@ new #[Layout('layout.web')] class extends Component {
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg">Abuja</h4>
-                                    <p class="text-gray-600 mb-2">The Federal Capital Territory hosts our flagship
-                                        commercial and government projects.</p>
+                                    <h4 class="font-bold text-lg">Guzape, Abuja</h4>
+                                    <p class="text-gray-600 mb-2">Premium residential development in the prestigious Guzape district of Abuja.</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Office Buildings</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential
-                                            Complexes</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Government
-                                            Facilities</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Premium Location</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Modern Architecture</span>
                                     </div>
                                 </div>
                             </div>
@@ -746,15 +698,12 @@ new #[Layout('layout.web')] class extends Component {
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg">Lagos</h4>
-                                    <p class="text-gray-600 mb-2">Nigeria's commercial hub is home to our innovative
-                                        commercial and industrial projects.</p>
+                                    <h4 class="font-bold text-lg">Dawaki, Abuja</h4>
+                                    <p class="text-gray-600 mb-2">Commercial development project showcasing innovative design and functionality.</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Commercial Centers</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Industrial
-                                            Facilities</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Waterfront
-                                            Developments</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Commercial</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Office Buildings</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Business Center</span>
                                     </div>
                                 </div>
                             </div>
@@ -765,15 +714,44 @@ new #[Layout('layout.web')] class extends Component {
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-lg">Port Harcourt</h4>
-                                    <p class="text-gray-600 mb-2">Our industrial and energy sector projects are
-                                        concentrated in this oil-rich region.</p>
+                                    <h4 class="font-bold text-lg">Life Camp, Abuja</h4>
+                                    <p class="text-gray-600 mb-2">Quality residential projects in the vibrant Life Camp district.</p>
                                     <div class="flex flex-wrap gap-2">
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Industrial
-                                            Complexes</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Oil & Gas
-                                            Facilities</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Office Buildings</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Family Homes</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Community Living</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="bg-accent h-8 w-8 rounded-full flex items-center justify-center text-white shrink-0 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Wuye, Abuja</h4>
+                                    <p class="text-gray-600 mb-2">Residential developments in the growing Wuye district with modern amenities.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Modern Homes</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Affordable Housing</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="bg-secondary h-8 w-8 rounded-full flex items-center justify-center text-white shrink-0 mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Lugbe, Abuja</h4>
+                                    <p class="text-gray-600 mb-2">Strategic residential projects in the expanding Lugbe area of Abuja.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Suburban Living</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Planned Development</span>
                                     </div>
                                 </div>
                             </div>

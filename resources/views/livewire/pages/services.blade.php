@@ -11,7 +11,7 @@ new #[Layout('layout.web')] class extends Component {
         return [
             'services' => Service::orderBy('display_order')->get(),
             'yearsExperience' => Setting::getValue('stats_years_experience', '8'),
-            'projectsCompleted' => Setting::getValue('stats_projects_completed', '150'),
+            'projectsCompleted' => '10',
         ];
     }
 }; ?>
@@ -774,7 +774,7 @@ new #[Layout('layout.web')] class extends Component {
                             <i class="fas fa-hard-hat text-2xl text-white"></i>
                         </div>
                         <div>
-                            <p class="text-white font-semibold">{{ $projectsCompleted ?? '150' }}+</p>
+                            <p class="text-white font-semibold">{{ $projectsCompleted ?? '10' }}+</p>
                             <p class="text-white/80 text-sm">Projects Completed</p>
                         </div>
                     </div>

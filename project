@@ -12,43 +12,27 @@ new #[Layout('layout.web')] class extends Component {
     <section class="relative bg-primary-dark text-white overflow-hidden">
         <!-- Background image with overlay -->
         <div class="absolute inset-0 z-0">
-            <img
-                src="/assets/IMG_7144.JPG"
-                alt="Akstruct Construction Projects"
-                class="w-full h-full object-cover object-center"
-            />
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-primary-dark/90 to-primary/70"
-            ></div>
+            <img src="/assets/IMG_7144.JPG" alt="Akstruct Construction Projects"
+                class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/90 to-primary/70"></div>
         </div>
         <!-- Floating elements (similar to homepage) -->
         <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-            <div
-                class="absolute top-24 left-10 w-32 h-32 bg-secondary/20 rounded-full filter blur-xl animate-pulse"
-            ></div>
-            <div
-                class="absolute bottom-24 right-10 w-40 h-40 bg-accent/20 rounded-full filter blur-xl animate-pulse"
-                style="animation-delay: 1s"
-            ></div>
-            <div
-                class="absolute top-1/3 right-1/4 w-24 h-24 bg-primary-light/20 rounded-full filter blur-xl animate-pulse"
-                style="animation-delay: 2s"
-            ></div>
-            <div
-                class="absolute top-1/4 right-1/5 w-16 h-16 bg-white/10 rounded-md rotate-12 animate-float"
-                style="animation-delay: 0.5s"
-            ></div>
-            <div
-                class="absolute bottom-1/3 left-1/4 w-12 h-12 bg-secondary/10 rounded-full animate-float"
-                style="animation-delay: 1.5s"
-            ></div>
+            <div class="absolute top-24 left-10 w-32 h-32 bg-secondary/20 rounded-full filter blur-xl animate-pulse">
+            </div>
+            <div class="absolute bottom-24 right-10 w-40 h-40 bg-accent/20 rounded-full filter blur-xl animate-pulse"
+                style="animation-delay: 1s"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-primary-light/20 rounded-full filter blur-xl animate-pulse"
+                style="animation-delay: 2s"></div>
+            <div class="absolute top-1/4 right-1/5 w-16 h-16 bg-white/10 rounded-md rotate-12 animate-float"
+                style="animation-delay: 0.5s"></div>
+            <div class="absolute bottom-1/3 left-1/4 w-12 h-12 bg-secondary/10 rounded-full animate-float"
+                style="animation-delay: 1.5s"></div>
         </div>
         <!-- Hero Content -->
         <div class="relative z-20 container mx-auto px-4 py-28">
             <div class="max-w-3xl">
-                <h1
-                    class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight"
-                >
+                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight">
                     Our Portfolio
                 </h1>
                 <p class="text-xl text-white/90 mb-8 leading-relaxed">
@@ -60,19 +44,14 @@ new #[Layout('layout.web')] class extends Component {
                 <nav class="flex" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
                         <li class="inline-flex items-center">
-                            <a
-                                href="#"
-                                class="inline-flex items-center text-white hover:text-secondary"
-                            >
+                            <a href="#" class="inline-flex items-center text-white hover:text-secondary">
                                 <i class="fas fa-home mr-2"></i>
                                 Home
                             </a>
                         </li>
                         <li aria-current="page">
                             <div class="flex items-center">
-                                <i
-                                    class="fas fa-chevron-right text-white/50 mx-2"
-                                ></i>
+                                <i class="fas fa-chevron-right text-white/50 mx-2"></i>
                                 <span class="text-white/80">Projects</span>
                             </div>
                         </li>
@@ -88,20 +67,16 @@ new #[Layout('layout.web')] class extends Component {
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Left Column with Text Content -->
                 <div>
-                    <span
-                        class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block"
-                        >OUR PROJECTS</span
-                    >
-                    <h2
-                        class="font-heading font-bold text-3xl md:text-4xl mb-6"
-                    >
+                    <span class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block">OUR
+                        PROJECTS</span>
+                    <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">
                         Transforming Visions into Reality Through Excellence
                     </h2>
                     <p class="text-gray-700 mb-6">
                         At Akstruct Construction Ltd, we pride ourselves on
                         delivering exceptional construction projects across
                         Nigeria. With a track record of
-                        <strong>150+</strong> successful projects and
+                        <strong>10+</strong> successful projects and
                         <strong>8</strong> years of industry experience, our
                         portfolio showcases our commitment to quality,
                         innovation, and sustainable development.
@@ -119,9 +94,7 @@ new #[Layout('layout.web')] class extends Component {
                             <div class="text-secondary mr-3">
                                 <i class="fas fa-check-circle text-2xl"></i>
                             </div>
-                            <span class="font-medium"
-                                >Quality Craftsmanship</span
-                            >
+                            <span class="font-medium">Quality Craftsmanship</span>
                         </div>
                         <div class="flex items-center">
                             <div class="text-secondary mr-3">
@@ -133,17 +106,13 @@ new #[Layout('layout.web')] class extends Component {
                             <div class="text-secondary mr-3">
                                 <i class="fas fa-check-circle text-2xl"></i>
                             </div>
-                            <span class="font-medium"
-                                >Sustainable Practices</span
-                            >
+                            <span class="font-medium">Sustainable Practices</span>
                         </div>
                         <div class="flex items-center">
                             <div class="text-secondary mr-3">
                                 <i class="fas fa-check-circle text-2xl"></i>
                             </div>
-                            <span class="font-medium"
-                                >Innovative Solutions</span
-                            >
+                            <span class="font-medium">Innovative Solutions</span>
                         </div>
                     </div>
                 </div>
@@ -151,40 +120,22 @@ new #[Layout('layout.web')] class extends Component {
                 <div>
                     <div class="relative">
                         <!-- Decorative elements -->
-                        <div
-                            class="absolute -top-6 -left-6 w-24 h-24 bg-secondary/20 rounded-lg"
-                        ></div>
-                        <div
-                            class="absolute -bottom-6 -right-6 w-24 h-24 bg-accent/20 rounded-lg"
-                        ></div>
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-secondary/20 rounded-lg"></div>
+                        <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-accent/20 rounded-lg"></div>
                         <!-- Main image -->
-                        <div
-                            class="relative z-10 rounded-xl overflow-hidden shadow-2xl"
-                        >
-                            <img
-                                src="/assets/IMG_7147.jpg"
-                                alt="Akstruct Construction Project"
-                                class="w-full h-auto"
-                            />
+                        <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl">
+                            <img src="/assets/IMG_7147.jpg" alt="Akstruct Construction Project" class="w-full h-auto" />
                         </div>
                         <!-- Floating smaller images -->
                         <div
-                            class="absolute -bottom-12 -left-12 z-20 w-32 h-32 rounded-lg overflow-hidden shadow-xl border-4 border-white transform rotate-6"
-                        >
-                            <img
-                                src="/assets/IMG_7145.jpg"
-                                alt="Construction Site"
-                                class="w-full h-full object-cover"
-                            />
+                            class="absolute -bottom-12 -left-12 z-20 w-32 h-32 rounded-lg overflow-hidden shadow-xl border-4 border-white transform rotate-6">
+                            <img src="/assets/IMG_7145.jpg" alt="Construction Site"
+                                class="w-full h-full object-cover" />
                         </div>
                         <div
-                            class="absolute -top-10 -right-10 z-20 w-28 h-28 rounded-lg overflow-hidden shadow-xl border-4 border-white transform -rotate-6"
-                        >
-                            <img
-                                src="/assets/IMG_7141.jpg"
-                                alt="Construction Project"
-                                class="w-full h-full object-cover"
-                            />
+                            class="absolute -top-10 -right-10 z-20 w-28 h-28 rounded-lg overflow-hidden shadow-xl border-4 border-white transform -rotate-6">
+                            <img src="/assets/IMG_7141.jpg" alt="Construction Project"
+                                class="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -195,26 +146,16 @@ new #[Layout('layout.web')] class extends Component {
     <!-- Featured Projects Section -->
     <section class="py-20 bg-stone relative overflow-hidden">
         <!-- Background pattern for visual interest -->
-        <div
-            class="absolute inset-0 bg-pattern opacity-5 z-0"
-            style="background-image: url('/assets/img/pattern.svg')"
-        ></div>
+        <div class="absolute inset-0 bg-pattern opacity-5 z-0" style="background-image: url('/assets/img/pattern.svg')">
+        </div>
         <!-- Decorative elements -->
-        <div
-            class="absolute -top-40 -right-40 w-80 h-80 bg-stone/50 rounded-full blur-3xl"
-        ></div>
-        <div
-            class="absolute -bottom-20 -left-20 w-60 h-60 bg-secondary/10 rounded-full blur-3xl"
-        ></div>
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-stone/50 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-secondary/10 rounded-full blur-3xl"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-16">
-                <span
-                    class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block"
-                    >FEATURED PROJECTS</span
-                >
-                <h2
-                    class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
-                >
+                <span class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block">FEATURED
+                    PROJECTS</span>
+                <h2 class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4">
                     Our Showcase Projects
                 </h2>
                 <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -225,38 +166,25 @@ new #[Layout('layout.web')] class extends Component {
             <!-- Featured Projects Display -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16">
                 <!-- First featured project (large) -->
-                <div
-                    class="md:col-span-8 relative group overflow-hidden rounded-xl shadow-xl"
-                >
+                <div class="md:col-span-8 relative group overflow-hidden rounded-xl shadow-xl">
                     <div class="aspect-[16/9] overflow-hidden">
-                        <img
-                            src="/assets/IMG_7147.jpg"
-                            alt="Luxury Office Complex"
-                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                        />
+                        <img src="/assets/IMG_7147.jpg" alt="Luxury Office Complex"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500"
-                        ></div>
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
+                        </div>
                     </div>
                     <div
-                        class="absolute inset-0 p-6 flex flex-col justify-end text-white transition-transform duration-500 translate-y-4 group-hover:translate-y-0"
-                    >
+                        class="absolute inset-0 p-6 flex flex-col justify-end text-white transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
                         <div
-                            class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0"
-                        >
-                            <div
-                                class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md"
-                            >
+                            class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
+                            <div class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md">
                                 Commercial
                             </div>
-                            <h3
-                                class="text-2xl font-bold mb-2 text-white drop-shadow-md"
-                            >
+                            <h3 class="text-2xl font-bold mb-2 text-white drop-shadow-md">
                                 Luxury Office Complex
                             </h3>
-                            <p
-                                class="mb-4 text-white/90 drop-shadow-md line-clamp-2"
-                            >
+                            <p class="mb-4 text-white/90 drop-shadow-md line-clamp-2">
                                 A state-of-the-art office complex featuring
                                 sustainable design elements, energy-efficient
                                 systems, and modern amenities for optimal
@@ -264,76 +192,50 @@ new #[Layout('layout.web')] class extends Component {
                             </p>
                         </div>
                         <div
-                            class="flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        >
+                            class="flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             <div class="flex space-x-4 text-sm text-white">
-                                <span
-                                    class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-2 py-1 rounded"
-                                >
+                                <span class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-2 py-1 rounded">
                                     <i class="fas fa-map-marker-alt mr-1"></i>
                                     Abuja, Nigeria
                                 </span>
-                                <span
-                                    class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-2 py-1 rounded"
-                                >
+                                <span class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-2 py-1 rounded">
                                     <i class="fas fa-calendar mr-1"></i>
                                     2023
                                 </span>
                             </div>
-                            <a
-                                href="#"
-                                class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl"
-                                >View Project</a
-                            >
+                            <a href="#" class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl">View Project</a>
                         </div>
                     </div>
                 </div>
                 <!-- Second featured project (smaller) -->
                 <div class="md:col-span-4 flex flex-col space-y-6">
-                    <div
-                        class="relative group overflow-hidden rounded-xl shadow-xl h-full"
-                    >
+                    <div class="relative group overflow-hidden rounded-xl shadow-xl h-full">
                         <div class="aspect-[4/3] h-full overflow-hidden">
-                            <img
-                                src="/assets/IMG_7143.JPG"
-                                alt="Luxury Apartment Complex"
-                                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                            />
+                            <img src="/assets/IMG_7143.JPG" alt="Luxury Apartment Complex"
+                                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" />
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500"
-                            ></div>
+                                class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
+                            </div>
                         </div>
-                        <div
-                            class="absolute inset-0 p-4 flex flex-col justify-end text-white"
-                        >
+                        <div class="absolute inset-0 p-4 flex flex-col justify-end text-white">
                             <div
-                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0"
-                            >
+                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
                                 <div
-                                    class="bg-accent inline-block px-2 py-0.5 text-xs font-semibold rounded mb-2 shadow-md"
-                                >
+                                    class="bg-accent inline-block px-2 py-0.5 text-xs font-semibold rounded mb-2 shadow-md">
                                     Residential
                                 </div>
-                                <h3
-                                    class="text-xl font-bold mb-1 text-white drop-shadow-md"
-                                >
+                                <h3 class="text-xl font-bold mb-1 text-white drop-shadow-md">
                                     Luxury Apartment Complex
                                 </h3>
-                                <p
-                                    class="text-sm text-white/90 drop-shadow-md mb-2 line-clamp-2"
-                                >
+                                <p class="text-sm text-white/90 drop-shadow-md mb-2 line-clamp-2">
                                     Modern residential complex with premium
                                     amenities, energy-efficient design, and
                                     sustainable construction materials.
                                 </p>
-                                <a
-                                    href="#"
-                                    class="text-secondary font-medium hover:text-white inline-flex items-center text-sm bg-primary-dark/50 backdrop-blur-sm px-3 py-1 rounded shadow-md"
-                                >
+                                <a href="#"
+                                    class="text-secondary font-medium hover:text-white inline-flex items-center text-sm bg-primary-dark/50 backdrop-blur-sm px-3 py-1 rounded shadow-md">
                                     View Details
-                                    <i
-                                        class="fas fa-arrow-right ml-1 text-xs"
-                                    ></i>
+                                    <i class="fas fa-arrow-right ml-1 text-xs"></i>
                                 </a>
                             </div>
                         </div>
@@ -341,117 +243,70 @@ new #[Layout('layout.web')] class extends Component {
                 </div>
             </div>
             <!-- Additional featured projects in a row -->
-            <div
-                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
-            >
-                <div
-                    class="project-card rounded-xl shadow-xl overflow-hidden group"
-                >
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <div class="project-card rounded-xl shadow-xl overflow-hidden group">
                     <div class="relative h-72 overflow-hidden">
-                        <img
-                            src="/assets/IMG_7140.jpg"
-                            alt="Project 3"
-                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                        />
+                        <img src="/assets/IMG_7140.jpg" alt="Project 3"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500"
-                        ></div>
-                        <div
-                            class="absolute inset-0 flex flex-col justify-end p-6"
-                        >
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6">
                             <div
-                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0"
-                            >
+                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
                                 <div
-                                    class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md"
-                                >
+                                    class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md">
                                     Commercial
                                 </div>
-                                <h3
-                                    class="text-xl font-bold mb-2 text-white drop-shadow-md"
-                                >
+                                <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
                                     Project 3
                                 </h3>
-                                <p
-                                    class="mb-4 text-white/90 drop-shadow-md line-clamp-2"
-                                >
+                                <p class="mb-4 text-white/90 drop-shadow-md line-clamp-2">
                                     Project description goes here.
                                 </p>
-                                <a
-                                    href="#"
-                                    class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl"
-                                >
+                                <a href="#" class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl">
                                     View Project
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="project-card rounded-xl shadow-xl overflow-hidden group"
-                >
+                <div class="project-card rounded-xl shadow-xl overflow-hidden group">
                     <div class="relative h-72 overflow-hidden">
-                        <img
-                            src="/assets/IMG_7141.jpg"
-                            alt="Project 4"
-                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                        />
+                        <img src="/assets/IMG_7141.jpg" alt="Project 4"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500"
-                        ></div>
-                        <div
-                            class="absolute inset-0 flex flex-col justify-end p-6"
-                        >
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/80 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6">
                             <div
-                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0"
-                            >
+                                class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
                                 <div
-                                    class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md"
-                                >
+                                    class="bg-accent inline-block px-3 py-1 text-sm font-semibold rounded mb-3 shadow-md">
                                     Residential
                                 </div>
-                                <h3
-                                    class="text-xl font-bold mb-2 text-white drop-shadow-md"
-                                >
+                                <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
                                     Project 4
                                 </h3>
-                                <p
-                                    class="mb-4 text-white/90 drop-shadow-md line-clamp-2"
-                                >
+                                <p class="mb-4 text-white/90 drop-shadow-md line-clamp-2">
                                     Project description goes here.
                                 </p>
-                                <a
-                                    href="#"
-                                    class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl"
-                                >
+                                <a href="#" class="btn btn-secondary btn-sm shadow-lg hover:shadow-xl">
                                     View Project
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="rounded-xl shadow-xl overflow-hidden relative group"
-                >
+                <div class="rounded-xl shadow-xl overflow-hidden relative group">
                     <div class="relative h-72 overflow-hidden bg-primary-dark">
-                        <div
-                            class="absolute inset-0 bg-pattern opacity-10"
-                            style="
+                        <div class="absolute inset-0 bg-pattern opacity-10" style="
                                 background-image: url('/assets/img/pattern.svg');
-                            "
-                        ></div>
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark opacity-80"
-                        ></div>
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"
-                        >
-                            <div
-                                class="bg-white/10 backdrop-blur-sm p-3 rounded-full mb-4"
-                            >
-                                <i
-                                    class="fas fa-building text-3xl text-white"
-                                ></i>
+                            "></div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark opacity-80"></div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                            <div class="bg-white/10 backdrop-blur-sm p-3 rounded-full mb-4">
+                                <i class="fas fa-building text-3xl text-white"></i>
                             </div>
                             <h3 class="text-xl font-bold mb-3 text-white">
                                 Have a Project in Mind?
@@ -460,10 +315,7 @@ new #[Layout('layout.web')] class extends Component {
                                 Let's bring your vision to life with our
                                 expertise in sustainable construction
                             </p>
-                            <a
-                                href="#"
-                                class="btn btn-secondary hover:shadow-lg"
-                            >
+                            <a href="#" class="btn btn-secondary hover:shadow-lg">
                                 Get a Quote
                             </a>
                         </div>
@@ -483,25 +335,15 @@ new #[Layout('layout.web')] class extends Component {
     <!-- All Projects Section with Filtering -->
     <section id="all-projects" class="py-20 bg-white relative overflow-hidden">
         <!-- Background elements -->
-        <div
-            class="absolute inset-0 z-0 opacity-10 bg-pattern"
-            style="background-image: url('/assets/img/pattern.svg')"
-        ></div>
-        <div
-            class="absolute -top-20 -left-20 w-60 h-60 bg-accent/5 rounded-full blur-3xl"
-        ></div>
-        <div
-            class="absolute -bottom-20 -right-20 w-40 h-40 bg-secondary/5 rounded-full blur-3xl"
-        ></div>
+        <div class="absolute inset-0 z-0 opacity-10 bg-pattern"
+            style="background-image: url('/assets/img/pattern.svg')"></div>
+        <div class="absolute -top-20 -left-20 w-60 h-60 bg-accent/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-secondary/5 rounded-full blur-3xl"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-16">
-                <span
-                    class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block"
-                    >ALL PROJECTS</span
-                >
-                <h2
-                    class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4"
-                >
+                <span class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block">ALL
+                    PROJECTS</span>
+                <h2 class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4">
                     Explore Our Complete Portfolio
                 </h2>
                 <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
@@ -511,24 +353,16 @@ new #[Layout('layout.web')] class extends Component {
             </div>
             <!-- Filter Controls -->
             <div class="bg-stone rounded-xl p-6 shadow-lg mb-12">
-                <div
-                    class="flex flex-col md:flex-row justify-between items-center gap-6"
-                >
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                     <div class="text-lg font-medium text-gray-700">
                         Filter Projects
                     </div>
                     <div class="flex flex-col sm:flex-row items-center gap-4">
                         <!-- Category Filter -->
                         <div class="w-full sm:w-auto">
-                            <label
-                                for="category-filter"
-                                class="text-sm text-gray-500 mb-1 block"
-                                >Category</label
-                            >
-                            <select
-                                id="category-filter"
-                                class="w-full sm:w-44 rounded-lg border-gray-200 shadow-sm focus:border-primary focus:ring-primary"
-                            >
+                            <label for="category-filter" class="text-sm text-gray-500 mb-1 block">Category</label>
+                            <select id="category-filter"
+                                class="w-full sm:w-44 rounded-lg border-gray-200 shadow-sm focus:border-primary focus:ring-primary">
                                 <option value="all">All Categories</option>
                                 <option value="Commercial">Commercial</option>
                                 <option value="Residential">Residential</option>
@@ -537,15 +371,9 @@ new #[Layout('layout.web')] class extends Component {
                         </div>
                         <!-- Year Filter -->
                         <div class="w-full sm:w-auto">
-                            <label
-                                for="year-filter"
-                                class="text-sm text-gray-500 mb-1 block"
-                                >Year</label
-                            >
-                            <select
-                                id="year-filter"
-                                class="w-full sm:w-44 rounded-lg border-gray-200 shadow-sm focus:border-primary focus:ring-primary"
-                            >
+                            <label for="year-filter" class="text-sm text-gray-500 mb-1 block">Year</label>
+                            <select id="year-filter"
+                                class="w-full sm:w-44 rounded-lg border-gray-200 shadow-sm focus:border-primary focus:ring-primary">
                                 <option value="all">All Years</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>
@@ -556,26 +384,18 @@ new #[Layout('layout.web')] class extends Component {
                 </div>
             </div>
             <!-- Projects Grid -->
-            <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
-            >
-                <div
-                    class="project-card rounded-xl shadow-lg overflow-hidden group bg-white border border-gray-100"
-                >
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="project-card rounded-xl shadow-lg overflow-hidden group bg-white border border-gray-100">
                     <div class="relative h-60 overflow-hidden">
-                        <img
-                            src="/assets/IMG_7140.jpg"
-                            alt="Project Alpha"
-                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                        />
+                        <img src="/assets/IMG_7140.jpg" alt="Project Alpha"
+                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/60 to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500"
-                        ></div>
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/60 to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500">
+                        </div>
                         <!-- Category Badge -->
                         <div class="absolute top-4 right-4">
                             <span
-                                class="bg-accent/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded shadow-md"
-                            >
+                                class="bg-accent/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded shadow-md">
                                 Commercial
                             </span>
                         </div>
@@ -583,54 +403,40 @@ new #[Layout('layout.web')] class extends Component {
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <h3
-                                class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-300"
-                            >
+                                class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-300">
                                 Project Alpha
                             </h3>
-                            <span class="text-sm text-gray-500 font-medium"
-                                >2023</span
-                            >
+                            <span class="text-sm text-gray-500 font-medium">2023</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2">
                             A modern commercial building located in the heart of
                             the city.
                         </p>
                         <div class="flex justify-between items-center">
-                            <div
-                                class="flex items-center text-gray-500 text-sm"
-                            >
+                            <div class="flex items-center text-gray-500 text-sm">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
                                 <span>Lagos, Nigeria</span>
                             </div>
-                            <a
-                                href="#"
-                                class="inline-flex items-center text-secondary font-medium hover:text-primary-dark group"
-                            >
+                            <a href="#"
+                                class="inline-flex items-center text-secondary font-medium hover:text-primary-dark group">
                                 <span>View Details</span>
                                 <i
-                                    class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"
-                                ></i>
+                                    class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="project-card rounded-xl shadow-lg overflow-hidden group bg-white border border-gray-100"
-                >
+                <div class="project-card rounded-xl shadow-lg overflow-hidden group bg-white border border-gray-100">
                     <div class="relative h-60 overflow-hidden">
-                        <img
-                            src="/assets/IMG_7141.jpg"
-                            alt="Project Beta"
-                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                        />
+                        <img src="/assets/IMG_7141.jpg" alt="Project Beta"
+                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/60 to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500"
-                        ></div>
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/60 to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500">
+                        </div>
                         <!-- Category Badge -->
                         <div class="absolute top-4 right-4">
                             <span
-                                class="bg-accent/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded shadow-md"
-                            >
+                                class="bg-accent/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded shadow-md">
                                 Residential
                             </span>
                         </div>
@@ -638,53 +444,39 @@ new #[Layout('layout.web')] class extends Component {
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <h3
-                                class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-300"
-                            >
+                                class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-300">
                                 Project Beta
                             </h3>
-                            <span class="text-sm text-gray-500 font-medium"
-                                >2022</span
-                            >
+                            <span class="text-sm text-gray-500 font-medium">2022</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2">
                             A luxury apartment complex with modern amenities.
                         </p>
                         <div class="flex justify-between items-center">
-                            <div
-                                class="flex items-center text-gray-500 text-sm"
-                            >
+                            <div class="flex items-center text-gray-500 text-sm">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
                                 <span>Abuja, Nigeria</span>
                             </div>
-                            <a
-                                href="#"
-                                class="inline-flex items-center text-secondary font-medium hover:text-primary-dark group"
-                            >
+                            <a href="#"
+                                class="inline-flex items-center text-secondary font-medium hover:text-primary-dark group">
                                 <span>View Details</span>
                                 <i
-                                    class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"
-                                ></i>
+                                    class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="project-card rounded-xl shadow-lg overflow-hidden group bg-white border border-gray-100"
-                >
+                <div class="project-card rounded-xl shadow-lg overflow-hidden group bg-white border border-gray-100">
                     <div class="relative h-60 overflow-hidden">
-                        <img
-                            src="/assets/IMG_7143.JPG"
-                            alt="Project Gamma"
-                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
-                        />
+                        <img src="/assets/IMG_7143.JPG" alt="Project Gamma"
+                            class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" />
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/60 to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500"
-                        ></div>
+                            class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/60 to-transparent opacity-70 group-hover:opacity-80 transition-all duration-500">
+                        </div>
                         <!-- Category Badge -->
                         <div class="absolute top-4 right-4">
                             <span
-                                class="bg-accent/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded shadow-md"
-                            >
+                                class="bg-accent/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded shadow-md">
                                 Industrial
                             </span>
                         </div>
@@ -692,33 +484,25 @@ new #[Layout('layout.web')] class extends Component {
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-3">
                             <h3
-                                class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-300"
-                            >
+                                class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-300">
                                 Project Gamma
                             </h3>
-                            <span class="text-sm text-gray-500 font-medium"
-                                >2021</span
-                            >
+                            <span class="text-sm text-gray-500 font-medium">2021</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2">
                             An industrial warehouse with advanced logistics
                             solutions.
                         </p>
                         <div class="flex justify-between items-center">
-                            <div
-                                class="flex items-center text-gray-500 text-sm"
-                            >
+                            <div class="flex items-center text-gray-500 text-sm">
                                 <i class="fas fa-map-marker-alt mr-1"></i>
                                 <span>Port Harcourt, Nigeria</span>
                             </div>
-                            <a
-                                href="#"
-                                class="inline-flex items-center text-secondary font-medium hover:text-primary-dark group"
-                            >
+                            <a href="#"
+                                class="inline-flex items-center text-secondary font-medium hover:text-primary-dark group">
                                 <span>View Details</span>
                                 <i
-                                    class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"
-                                ></i>
+                                    class="fas fa-arrow-right ml-2 transform transition-transform duration-300 group-hover:translate-x-2"></i>
                             </a>
                         </div>
                     </div>
@@ -737,29 +521,17 @@ new #[Layout('layout.web')] class extends Component {
     <!-- Project Inquiry Call-to-Action Section -->
     <section class="py-16 bg-stone relative overflow-hidden">
         <!-- Background elements -->
-        <div
-            class="absolute inset-0 bg-pattern opacity-10"
-            style="background-image: url('/assets/img/pattern.svg')"
-        ></div>
-        <div
-            class="absolute -top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-        ></div>
-        <div
-            class="absolute -bottom-20 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"
-        ></div>
+        <div class="absolute inset-0 bg-pattern opacity-10" style="background-image: url('/assets/img/pattern.svg')">
+        </div>
+        <div class="absolute -top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
         <div class="container mx-auto px-4 relative z-10">
             <div class="bg-white rounded-2xl shadow-lg p-10 max-w-5xl mx-auto">
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
-                >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div>
-                        <span
-                            class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block"
-                            >START YOUR PROJECT</span
-                        >
-                        <h3
-                            class="font-heading font-bold text-2xl md:text-3xl mb-4"
-                        >
+                        <span class="text-secondary text-sm uppercase tracking-widest font-medium mb-2 block">START YOUR
+                            PROJECT</span>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl mb-4">
                             Have a Construction Project in Mind?
                         </h3>
                         <p class="text-gray-600 mb-6">
@@ -796,11 +568,7 @@ new #[Layout('layout.web')] class extends Component {
                         </div>
                     </div>
                     <div class="hidden md:block">
-                        <img
-                            src="/assets/img/cta-image.svg"
-                            alt="Request a Quote"
-                            class="w-full h-auto"
-                        />
+                        <img src="/assets/img/cta-image.svg" alt="Request a Quote" class="w-full h-auto" />
                     </div>
                 </div>
             </div>
