@@ -244,6 +244,11 @@ new #[Layout('layout.web')] class extends Component {
     </section>
 
     <!-- Featured Projects Section -->
+    @php
+        $featuredProject = $featuredProjects->first();
+    @endphp
+
+    @if($featuredProject)
     <section class="py-16 bg-white relative overflow-hidden">
         <!-- Background elements -->
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-stone/50 rounded-full blur-3xl"></div>
@@ -263,11 +268,17 @@ new #[Layout('layout.web')] class extends Component {
 
             <!-- Single Featured Project in Hero Layout -->
             <div class="mx-auto">
-                <!-- HH II GUZAPE Project -->
                 <div class="group relative overflow-hidden rounded-xl shadow-xl h-[600px]" data-aos="fade-up">
                     <div class="absolute inset-0 overflow-hidden">
-                        <img src="{{ asset('assets/IMG_7147.jpg') }}" alt="HH II GUZAPE"
-                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                        @if($featuredProject->featured_image || $featuredProject->image_path)
+                            <img src="{{ asset($featuredProject->featured_image ?? $featuredProject->image_path) }}"
+                                 alt="{{ $featuredProject->title }}"
+                                 class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                        @else
+                            <div class="w-full h-full bg-gray-300 flex items-center justify-center">
+                                <span class="text-gray-500 text-2xl">No Image Available</span>
+                            </div>
+                        @endif
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/60 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
                         </div>
@@ -276,35 +287,32 @@ new #[Layout('layout.web')] class extends Component {
                         <div
                             class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
                             <div class="bg-accent inline-block px-4 py-2 text-sm font-semibold rounded mb-6 shadow-md">
-                                Residential Development
+                                {{ $featuredProject->category->name ?? 'Project' }}
                             </div>
                             <h3 class="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-md">
-                                HH II GUZAPE
+                                {{ $featuredProject->title }}
                             </h3>
                             <p class="mb-8 text-white/90 drop-shadow-md max-w-3xl text-lg leading-relaxed">
-                                Our flagship residential development in the prestigious Guzape district of Abuja. This
-                                project exemplifies our commitment to sustainable construction practices, innovative
-                                design, and environmental responsibility while delivering exceptional living spaces.
+                                {{ $featuredProject->short_description ?? Str::limit($featuredProject->description, 200) }}
                             </p>
                             <div class="flex flex-wrap justify-between items-center gap-4">
                                 <div class="flex flex-wrap gap-4 text-sm text-white">
-                                    <span
-                                        class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
+                                    <span class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
                                         <i class="fas fa-map-marker-alt mr-2"></i>
-                                        Guzape, Abuja
+                                        {{ $featuredProject->location }}
                                     </span>
-                                    <span
-                                        class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
-                                        <i class="fas fa-calendar mr-2"></i>
-                                        2024
-                                    </span>
-                                    <span
-                                        class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
+                                    @if($featuredProject->year || $featuredProject->completed_at)
+                                        <span class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
+                                            <i class="fas fa-calendar mr-2"></i>
+                                            {{ $featuredProject->year ?? $featuredProject->completed_at->format('Y') }}
+                                        </span>
+                                    @endif
+                                    <span class="flex items-center bg-primary-dark/50 backdrop-blur-sm px-4 py-2 rounded">
                                         <i class="fas fa-building mr-2"></i>
-                                        Residential Complex
+                                        {{ $featuredProject->category->name ?? 'Construction Project' }}
                                     </span>
                                 </div>
-                                <a href="{{ route('projects.hh-guzape') }}"
+                                <a href="{{ route('projects.show', $featuredProject) }}"
                                     class="btn btn-secondary shadow-lg hover:shadow-xl">
                                     View Project Details
                                 </a>
@@ -315,61 +323,42 @@ new #[Layout('layout.web')] class extends Component {
             </div>
 
             <!-- Project Gallery Showcase -->
-            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <img src="{{ asset('assets/IMG_7145.jpg') }}" alt="HH II GUZAPE - Construction Phase"
-                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
-                    </div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h4 class="text-lg font-bold">Construction Phase</h4>
-                        <p class="text-sm text-white/90">Foundation & Structure</p>
-                    </div>
+            @if($featuredProject->gallery_images && is_array($featuredProject->gallery_images) && count($featuredProject->gallery_images) >= 3)
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    @foreach(array_slice($featuredProject->gallery_images, 0, 3) as $index => $galleryImage)
+                        <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
+                            data-aos-delay="{{ ($index + 1) * 100 }}">
+                            <img src="{{ asset($galleryImage) }}" alt="{{ $featuredProject->title }} - Image {{ $index + 1 }}"
+                                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-
-                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <img src="{{ asset('assets/IMG_7141.jpg') }}" alt="HH II GUZAPE - Design Elements"
-                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
-                    </div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h4 class="text-lg font-bold">Design Excellence</h4>
-                        <p class="text-sm text-white/90">Modern Architecture</p>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
-                    data-aos-delay="300">
-                    <img src="{{ asset('assets/IMG_7143.JPG') }}" alt="HH II GUZAPE - Finishing"
-                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
-                    </div>
-                    <div class="absolute bottom-4 left-4 text-white">
-                        <h4 class="text-lg font-bold">Quality Finishing</h4>
-                        <p class="text-sm text-white/90">Premium Details</p>
-                    </div>
-                </div>
-            </div>
+            @endif
 
             <!-- Video Showcase -->
-            <div class="mt-16 bg-stone p-8 rounded-xl shadow-lg" data-aos="fade-up">
-                <h3 class="text-2xl font-bold mb-6 text-center">HH II GUZAPE Project Video</h3>
-                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-xl">
-                    <video class="w-full h-full object-cover" poster="{{ asset('assets/IMG_7143.JPG') }}" controls>
-                        <source src="{{ asset('assets/Akstruct (Guzape site).MP4') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+            @if($featuredProject->video_path)
+                <div class="mt-16 bg-stone p-8 rounded-xl shadow-lg" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-6 text-center">{{ $featuredProject->title }} - Project Video</h3>
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-xl">
+                        <video class="w-full h-full object-cover"
+                               @if($featuredProject->featured_image)
+                                   poster="{{ asset($featuredProject->featured_image) }}"
+                               @endif
+                               controls>
+                            <source src="{{ asset($featuredProject->video_path) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">Take a virtual tour of {{ $featuredProject->title }} and see our
+                        construction excellence in action</p>
                 </div>
-                <p class="text-center mt-4 text-gray-600">Take a virtual tour of our HH II GUZAPE project and see our
-                    construction excellence in action</p>
-            </div>
+            @endif
         </div>
     </section>
+    @endif
 
     <!-- Project Gallery Grid -->
     <section class="py-20 bg-stone relative overflow-hidden">
@@ -396,22 +385,17 @@ new #[Layout('layout.web')] class extends Component {
                             class="rounded-xl overflow-hidden bg-white shadow-lg h-full flex flex-col transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                             <!-- Project Image -->
                             <div class="relative h-64 overflow-hidden">
-                                @php
-                                    // Rotate between the available images for demonstration
-                                    $images = [
-                                        'assets/IMG_7139.JPG',
-                                        'assets/IMG_7140.jpg',
-                                        'assets/IMG_7141.jpg',
-                                        'assets/IMG_7143.JPG',
-                                        'assets/IMG_7144.JPG',
-                                        'assets/IMG_7145.jpg',
-                                        'assets/IMG_7147.jpg',
-                                    ];
-                                    $imageIndex = $index % count($images);
-                                    $image = $images[$imageIndex];
-                                @endphp
-                                <img src="{{ asset($image) }}" alt="{{ $project->title }}"
-                                    class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                                @if($project->featured_image || $project->image_path)
+                                    <img src="{{ asset($project->featured_image ?? $project->image_path) }}"
+                                         alt="{{ $project->title }}"
+                                         class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                                @else
+                                    <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </div>
+                                @endif
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-60 group-hover:opacity-80 transition-all duration-300">
                                 </div>
