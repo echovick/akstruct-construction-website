@@ -12,11 +12,10 @@ new #[Layout('layout.admin')] class extends Component {
     {
         // In a real implementation, these would come from the database
         $this->stats = [
-            'projects' => 24,
-            'services' => 8,
-            'blog_posts' => 15,
-            'team_members' => 12,
-            'active_listings' => 6,
+            'total_projects' => 24,
+            'published_projects' => 18,
+            'draft_projects' => 6,
+            'total_categories' => 5,
         ];
 
         $this->recentActivity = [
@@ -24,44 +23,41 @@ new #[Layout('layout.admin')] class extends Component {
                 'type' => 'Project',
                 'title' => 'Modern Office Complex',
                 'action' => 'updated',
-                'author' => 'John Doe',
+                'author' => 'Admin',
                 'timestamp' => '2 hours ago',
             ],
             [
-                'type' => 'Blog Post',
-                'title' => 'Sustainable Construction Practices',
+                'type' => 'Project',
+                'title' => 'Residential Building Phase 2',
                 'action' => 'published',
-                'author' => 'Jane Smith',
+                'author' => 'Admin',
                 'timestamp' => '3 hours ago',
             ],
             [
-                'type' => 'Service',
-                'title' => 'Commercial Construction',
+                'type' => 'Project',
+                'title' => 'Commercial Plaza Development',
                 'action' => 'created',
-                'author' => 'Mike Johnson',
+                'author' => 'Admin',
                 'timestamp' => '5 hours ago',
             ],
             [
-                'type' => 'Team Member',
-                'title' => 'Sarah Wilson',
-                'action' => 'added',
+                'type' => 'Category',
+                'title' => 'Residential',
+                'action' => 'updated',
                 'author' => 'Admin',
                 'timestamp' => '1 day ago',
             ],
             [
-                'type' => 'Job Listing',
-                'title' => 'Senior Project Manager',
+                'type' => 'Project',
+                'title' => 'Infrastructure Project',
                 'action' => 'published',
-                'author' => 'HR Team',
-                'timestamp' => '1 day ago',
+                'author' => 'Admin',
+                'timestamp' => '2 days ago',
             ],
         ];
 
         $this->contentStats = [
             'projects' => ['published' => 18, 'draft' => 6],
-            'services' => ['published' => 6, 'draft' => 2],
-            'blog_posts' => ['published' => 12, 'draft' => 3],
-            'job_listings' => ['published' => 4, 'draft' => 2],
         ];
     }
 }; ?>
@@ -74,13 +70,13 @@ new #[Layout('layout.admin')] class extends Component {
     </div>
 
     <!-- Overview Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Total Projects -->
         <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-medium text-gray-600">Total Projects</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['projects'] }}</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['total_projects'] }}</h3>
                 </div>
                 <div class="bg-blue-100 p-3 rounded-full">
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,65 +87,49 @@ new #[Layout('layout.admin')] class extends Component {
             </div>
         </div>
 
-        <!-- Services -->
+        <!-- Published Projects -->
         <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600">Services</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['services'] }}</h3>
+                    <p class="text-sm font-medium text-gray-600">Published</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['published_projects'] }}</h3>
                 </div>
                 <div class="bg-green-100 p-3 rounded-full">
                     <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </div>
             </div>
         </div>
 
-        <!-- Blog Posts -->
+        <!-- Draft Projects -->
         <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600">Blog Posts</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['blog_posts'] }}</h3>
-                </div>
-                <div class="bg-purple-100 p-3 rounded-full">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <!-- Team Members -->
-        <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600">Team Members</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['team_members'] }}</h3>
+                    <p class="text-sm font-medium text-gray-600">Drafts</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['draft_projects'] }}</h3>
                 </div>
                 <div class="bg-yellow-100 p-3 rounded-full">
                     <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                     </svg>
                 </div>
             </div>
         </div>
 
-        <!-- Active Listings -->
+        <!-- Categories -->
         <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600">Active Listings</p>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['active_listings'] }}</h3>
+                    <p class="text-sm font-medium text-gray-600">Categories</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-2">{{ $stats['total_categories'] }}</h3>
                 </div>
-                <div class="bg-red-100 p-3 rounded-full">
-                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-purple-100 p-3 rounded-full">
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                     </svg>
                 </div>
             </div>
@@ -161,7 +141,7 @@ new #[Layout('layout.admin')] class extends Component {
         <!-- Quick Stats -->
         <div class="lg:col-span-1 bg-white rounded-lg shadow-sm border border-gray-200">
             <div class="p-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Content Status</h3>
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Project Status</h3>
                 <div class="space-y-4">
                     @foreach ($contentStats as $type => $stats)
                         <div>
@@ -211,14 +191,8 @@ new #[Layout('layout.admin')] class extends Component {
                                             @case('Project')
                                                 bg-blue-100 text-blue-800
                                                 @break
-                                            @case('Blog Post')
+                                            @case('Category')
                                                 bg-purple-100 text-purple-800
-                                                @break
-                                            @case('Service')
-                                                bg-green-100 text-green-800
-                                                @break
-                                            @case('Team Member')
-                                                bg-yellow-100 text-yellow-800
                                                 @break
                                             @default
                                                 bg-gray-100 text-gray-800

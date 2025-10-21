@@ -45,48 +45,6 @@ Route::middleware(['guest'])->prefix('admin')->group(function () {
     Volt::route('/projects/create', 'admin.projects.create')->name('admin.projects.create');
     Volt::route('/projects/{project}/edit', 'admin.projects.edit')->name('admin.projects.edit');
     Volt::route('/projects/categories', 'admin.projects.categories')->name('admin.projects.categories');
-
-    // Services
-    Volt::route('/services', 'admin.services.overview')->name('admin.services.overview');
-    Volt::route('/services/create', 'admin.services.create')->name('admin.services.create');
-    Volt::route('/services/{service}/edit', 'admin.services.edit')->name('admin.services.edit');
-
-    // Pages
-    Route::get('/pages', \App\Livewire\Admin\Pages\Overview::class)->name('admin.pages.overview');
-    Route::get('/pages/create', \App\Livewire\Admin\Pages\Create::class)->name('admin.pages.create');
-    Route::get('/pages/{page}/edit', \App\Livewire\Admin\Pages\Edit::class)->name('admin.pages.edit');
-
-    // Blog
-    Volt::route('/blog', 'admin.blog.overview')->name('admin.blog.overview');
-    Volt::route('/blog/create', 'admin.blog.create')->name('admin.blog.create');
-    Volt::route('/blog/{blog}/edit', 'admin.blog.overview.edit')->name('admin.blog.overview.edit');
-    Volt::route('/blog/categories', 'admin.blog.categories')->name('admin.blog.categories');
-
-    // Team
-    Volt::route('/team', 'admin.team')->name('admin.team');
-    Volt::route('/team/create', 'admin.team.create')->name('admin.team.create');
-    Volt::route('/team/{team}/edit', 'admin.team.edit')->name('admin.team.edit');
-
-    // Job Listings
-    Volt::route('/job-listings', 'admin.job-listings')->name('admin.job-listings');
-    Volt::route('/job-listings/create', 'admin.job-listings.create')->name('admin.job-listings.create');
-    Volt::route('/job-listings/{job-listing}/edit', 'admin.job-listings.edit')->name('admin.job-listings.edit');
-    Volt::route('/job-listings/applications', 'admin.job-listings.applications')->name('admin.job-listings.all-applications');
-    Volt::route('/job-listings/{job-listing}/applications', 'admin.job-listings.applications')->name('admin.job-listings.applications');
-
-    // Media Library
-    Volt::route('/media-library', 'admin.media-library')->name('admin.media-library');
-
-    // Users & Permissions
-    Volt::route('/users', 'admin.users')->name('admin.users');
-    Volt::route('/roles', 'admin.roles')->name('admin.roles');
-    Volt::route('/permissions', 'admin.permissions')->name('admin.permissions');
-
-    // Settings
-    Volt::route('/general', 'admin.general')->name('admin.general');
-    Volt::route('/seo', 'admin.seo')->name('admin.seo');
-    Volt::route('/social-media', 'admin.social-media')->name('admin.social-media');
-    Volt::route('/contact', 'admin.contact')->name('admin.contact');
 });
 
 // Blog Routes
