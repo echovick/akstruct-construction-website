@@ -262,13 +262,11 @@ new #[Layout('layout.web')] class extends Component {
             </div>
 
             <!-- Single Featured Project in Hero Layout -->
-            <div class="max-w-6xl mx-auto">
+            <div class="mx-auto">
                 <!-- HH II GUZAPE Project -->
-                <div class="group relative overflow-hidden rounded-xl shadow-xl h-[600px]"
-                    data-aos="fade-up">
+                <div class="group relative overflow-hidden rounded-xl shadow-xl h-[600px]" data-aos="fade-up">
                     <div class="absolute inset-0 overflow-hidden">
-                        <img src="{{ asset('assets/IMG_7147.jpg') }}"
-                            alt="HH II GUZAPE"
+                        <img src="{{ asset('assets/IMG_7147.jpg') }}" alt="HH II GUZAPE"
                             class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/60 to-transparent opacity-80 group-hover:opacity-90 transition-all duration-500">
@@ -277,15 +275,16 @@ new #[Layout('layout.web')] class extends Component {
                     <div class="absolute inset-0 p-8 flex flex-col justify-end text-white">
                         <div
                             class="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                            <div
-                                class="bg-accent inline-block px-4 py-2 text-sm font-semibold rounded mb-6 shadow-md">
+                            <div class="bg-accent inline-block px-4 py-2 text-sm font-semibold rounded mb-6 shadow-md">
                                 Residential Development
                             </div>
                             <h3 class="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-md">
                                 HH II GUZAPE
                             </h3>
                             <p class="mb-8 text-white/90 drop-shadow-md max-w-3xl text-lg leading-relaxed">
-                                Our flagship residential development in the prestigious Guzape district of Abuja. This project exemplifies our commitment to sustainable construction practices, innovative design, and environmental responsibility while delivering exceptional living spaces.
+                                Our flagship residential development in the prestigious Guzape district of Abuja. This
+                                project exemplifies our commitment to sustainable construction practices, innovative
+                                design, and environmental responsibility while delivering exceptional living spaces.
                             </p>
                             <div class="flex flex-wrap justify-between items-center gap-4">
                                 <div class="flex flex-wrap gap-4 text-sm text-white">
@@ -317,30 +316,39 @@ new #[Layout('layout.web')] class extends Component {
 
             <!-- Project Gallery Showcase -->
             <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up" data-aos-delay="100">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
+                    data-aos-delay="100">
                     <img src="{{ asset('assets/IMG_7145.jpg') }}" alt="HH II GUZAPE - Construction Phase"
                         class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
+                    </div>
                     <div class="absolute bottom-4 left-4 text-white">
                         <h4 class="text-lg font-bold">Construction Phase</h4>
                         <p class="text-sm text-white/90">Foundation & Structure</p>
                     </div>
                 </div>
 
-                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up" data-aos-delay="200">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
+                    data-aos-delay="200">
                     <img src="{{ asset('assets/IMG_7141.jpg') }}" alt="HH II GUZAPE - Design Elements"
                         class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
+                    </div>
                     <div class="absolute bottom-4 left-4 text-white">
                         <h4 class="text-lg font-bold">Design Excellence</h4>
                         <p class="text-sm text-white/90">Modern Architecture</p>
                     </div>
                 </div>
 
-                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up" data-aos-delay="300">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg h-[300px]" data-aos="fade-up"
+                    data-aos-delay="300">
                     <img src="{{ asset('assets/IMG_7143.JPG') }}" alt="HH II GUZAPE - Finishing"
                         class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300">
+                    </div>
                     <div class="absolute bottom-4 left-4 text-white">
                         <h4 class="text-lg font-bold">Quality Finishing</h4>
                         <p class="text-sm text-white/90">Premium Details</p>
@@ -357,7 +365,8 @@ new #[Layout('layout.web')] class extends Component {
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <p class="text-center mt-4 text-gray-600">Take a virtual tour of our HH II GUZAPE project and see our construction excellence in action</p>
+                <p class="text-center mt-4 text-gray-600">Take a virtual tour of our HH II GUZAPE project and see our
+                    construction excellence in action</p>
             </div>
         </div>
     </section>
@@ -683,11 +692,13 @@ new #[Layout('layout.web')] class extends Component {
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Guzape, Abuja</h4>
-                                    <p class="text-gray-600 mb-2">Premium residential development in the prestigious Guzape district of Abuja.</p>
+                                    <p class="text-gray-600 mb-2">Premium residential development in the prestigious
+                                        Guzape district of Abuja.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Premium Location</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Modern Architecture</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Modern
+                                            Architecture</span>
                                     </div>
                                 </div>
                             </div>
@@ -699,7 +710,8 @@ new #[Layout('layout.web')] class extends Component {
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Dawaki, Abuja</h4>
-                                    <p class="text-gray-600 mb-2">Commercial development project showcasing innovative design and functionality.</p>
+                                    <p class="text-gray-600 mb-2">Commercial development project showcasing innovative
+                                        design and functionality.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Commercial</span>
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Office Buildings</span>
@@ -715,7 +727,8 @@ new #[Layout('layout.web')] class extends Component {
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Life Camp, Abuja</h4>
-                                    <p class="text-gray-600 mb-2">Quality residential projects in the vibrant Life Camp district.</p>
+                                    <p class="text-gray-600 mb-2">Quality residential projects in the vibrant Life Camp
+                                        district.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Family Homes</span>
@@ -731,7 +744,8 @@ new #[Layout('layout.web')] class extends Component {
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Wuye, Abuja</h4>
-                                    <p class="text-gray-600 mb-2">Residential developments in the growing Wuye district with modern amenities.</p>
+                                    <p class="text-gray-600 mb-2">Residential developments in the growing Wuye district
+                                        with modern amenities.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Modern Homes</span>
@@ -747,11 +761,13 @@ new #[Layout('layout.web')] class extends Component {
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-lg">Lugbe, Abuja</h4>
-                                    <p class="text-gray-600 mb-2">Strategic residential projects in the expanding Lugbe area of Abuja.</p>
+                                    <p class="text-gray-600 mb-2">Strategic residential projects in the expanding Lugbe
+                                        area of Abuja.</p>
                                     <div class="flex flex-wrap gap-2">
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Residential</span>
                                         <span class="bg-stone rounded-full px-3 py-1 text-xs">Suburban Living</span>
-                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Planned Development</span>
+                                        <span class="bg-stone rounded-full px-3 py-1 text-xs">Planned
+                                            Development</span>
                                     </div>
                                 </div>
                             </div>

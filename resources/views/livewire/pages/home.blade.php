@@ -33,7 +33,8 @@ new #[Layout('layout.web')] class extends Component {
         @if ($useVideoBackground)
             <div class="absolute inset-0 z-0">
                 <video class="object-cover w-full h-full" autoplay loop playsinline>
-                    <source src="{{ asset('assets/AKSTUCT (MARCH,2025) revised .MP4') }}" type="video/mp4">
+                    <source src="https://res.cloudinary.com/dtfbkxzmc/video/upload/v1761084721/HENLEY_HEIGHTS_kxeytz.mov"
+                        type="video/mp4">
                     <!-- Fallback image if video can't play -->
                     <div class="absolute inset-0 bg-cover bg-center"
                         style="background-image: url('{{ asset('assets/IMG_7144.JPG') }}')"></div>
