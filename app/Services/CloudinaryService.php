@@ -19,22 +19,41 @@ class CloudinaryService
     public function uploadImage(UploadedFile $file, string $folder = 'projects', array $options = []): ?string
     {
         try {
+            // Validate file exists and is readable
+            if (!$file->isValid()) {
+                Log::error('Invalid file for upload: ' . $file->getClientOriginalName());
+                return null;
+            }
+
             $defaultOptions = [
                 'folder' => $folder,
-                'resource_type' => 'image',
-                'transformation' => [
-                    'quality' => 'auto',
-                    'fetch_format' => 'auto'
-                ]
             ];
 
             $uploadOptions = array_merge($defaultOptions, $options);
 
+            // Upload to Cloudinary
             $result = Cloudinary::upload($file->getRealPath(), $uploadOptions);
 
-            return $result->getSecurePath();
+            if (!$result) {
+                Log::error('Cloudinary upload returned null for file: ' . $file->getClientOriginalName());
+                return null;
+            }
+
+            $uploadedFileUrl = $result->getSecurePath();
+
+            if (!$uploadedFileUrl) {
+                Log::error('Cloudinary result has no secure path for file: ' . $file->getClientOriginalName());
+                return null;
+            }
+
+            return $uploadedFileUrl;
         } catch (\Exception $e) {
-            Log::error('Cloudinary upload failed: ' . $e->getMessage());
+            Log::error('Cloudinary upload exception', [
+                'message' => $e->getMessage(),
+                'file' => $file->getClientOriginalName(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
             return null;
         }
     }
@@ -73,9 +92,15 @@ class CloudinaryService
     {
         try {
             $result = Cloudinary::destroy($publicId);
-            return $result['result'] === 'ok';
+
+            if (!$result || !is_array($result)) {
+                Log::error('Cloudinary delete returned invalid result for: ' . $publicId);
+                return false;
+            }
+
+            return isset($result['result']) && $result['result'] === 'ok';
         } catch (\Exception $e) {
-            Log::error('Cloudinary delete failed: ' . $e->getMessage());
+            Log::error('Cloudinary delete failed: ' . $e->getMessage() . ' | Public ID: ' . $publicId);
             return false;
         }
     }
@@ -129,6 +154,11 @@ class CloudinaryService
     public function uploadDocument(UploadedFile $file, string $folder = 'documents', array $options = []): ?string
     {
         try {
+            if (!$file->isValid()) {
+                Log::error('Invalid document file for upload: ' . $file->getClientOriginalName());
+                return null;
+            }
+
             $defaultOptions = [
                 'folder' => $folder,
                 'resource_type' => 'raw',
@@ -138,9 +168,25 @@ class CloudinaryService
 
             $result = Cloudinary::upload($file->getRealPath(), $uploadOptions);
 
-            return $result->getSecurePath();
+            if (!$result) {
+                Log::error('Cloudinary document upload returned null for file: ' . $file->getClientOriginalName());
+                return null;
+            }
+
+            $uploadedFileUrl = $result->getSecurePath();
+
+            if (!$uploadedFileUrl) {
+                Log::error('Cloudinary document result has no secure path for file: ' . $file->getClientOriginalName());
+                return null;
+            }
+
+            return $uploadedFileUrl;
         } catch (\Exception $e) {
-            Log::error('Cloudinary document upload failed: ' . $e->getMessage());
+            Log::error('Cloudinary document upload exception', [
+                'message' => $e->getMessage(),
+                'file' => $file->getClientOriginalName(),
+                'trace' => $e->getTraceAsString()
+            ]);
             return null;
         }
     }

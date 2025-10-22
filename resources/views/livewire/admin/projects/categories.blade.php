@@ -332,7 +332,7 @@ new #[Layout('layout.admin')] class extends Component {
                                         Name <span class="text-red-500">*</span>
                                     </label>
                                     <input type="text" wire:model.live.debounce.300ms="name" id="name"
-                                        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                                        class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                                         placeholder="e.g., Residential, Commercial">
                                     @error('name')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -345,7 +345,7 @@ new #[Layout('layout.admin')] class extends Component {
                                         Slug <span class="text-red-500">*</span>
                                     </label>
                                     <input type="text" wire:model="slug" id="slug"
-                                        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm bg-gray-50"
+                                        class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm bg-gray-50"
                                         readonly>
                                     <p class="mt-1 text-xs text-gray-500">Auto-generated from name</p>
                                     @error('slug')
@@ -379,7 +379,7 @@ new #[Layout('layout.admin')] class extends Component {
                                         Description
                                     </label>
                                     <textarea wire:model="description" id="description" rows="3"
-                                        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                                        class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                                         placeholder="Brief description of this category"></textarea>
                                     <p class="mt-1 text-xs text-gray-500">{{ strlen($description) }}/500 characters
                                     </p>

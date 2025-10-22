@@ -5,6 +5,7 @@ use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 use App\Models\Project;
 use App\Models\Category;
+use App\Services\CloudinaryService;
 use Illuminate\Support\Facades\Storage;
 
 new #[Layout('layout.admin')] class extends Component {
@@ -90,20 +91,34 @@ new #[Layout('layout.admin')] class extends Component {
     {
         $project = Project::find($projectId);
         if ($project) {
-            // Delete associated files
+            $cloudinary = app(CloudinaryService::class);
+
+            // Delete associated files from Cloudinary
             if ($project->featured_image) {
-                Storage::disk('public')->delete($project->featured_image);
+                $publicId = $cloudinary->getPublicIdFromUrl($project->featured_image);
+                if ($publicId) {
+                    $cloudinary->deleteImage($publicId);
+                }
             }
             if ($project->gallery_images) {
                 foreach ($project->gallery_images as $image) {
-                    Storage::disk('public')->delete($image);
+                    $publicId = $cloudinary->getPublicIdFromUrl($image);
+                    if ($publicId) {
+                        $cloudinary->deleteImage($publicId);
+                    }
                 }
             }
             if ($project->completion_certificate) {
-                Storage::disk('public')->delete($project->completion_certificate);
+                $publicId = $cloudinary->getPublicIdFromUrl($project->completion_certificate);
+                if ($publicId) {
+                    $cloudinary->deleteImage($publicId);
+                }
             }
             if ($project->case_study_pdf) {
-                Storage::disk('public')->delete($project->case_study_pdf);
+                $publicId = $cloudinary->getPublicIdFromUrl($project->case_study_pdf);
+                if ($publicId) {
+                    $cloudinary->deleteImage($publicId);
+                }
             }
 
             $project->delete();
@@ -118,17 +133,38 @@ new #[Layout('layout.admin')] class extends Component {
             return;
         }
 
+        $cloudinary = app(CloudinaryService::class);
         $projects = Project::whereIn('id', $this->selectedProjects)->get();
+
         foreach ($projects as $project) {
-            // Delete associated files
+            // Delete associated files from Cloudinary
             if ($project->featured_image) {
-                Storage::disk('public')->delete($project->featured_image);
+                $publicId = $cloudinary->getPublicIdFromUrl($project->featured_image);
+                if ($publicId) {
+                    $cloudinary->deleteImage($publicId);
+                }
             }
             if ($project->gallery_images) {
                 foreach ($project->gallery_images as $image) {
-                    Storage::disk('public')->delete($image);
+                    $publicId = $cloudinary->getPublicIdFromUrl($image);
+                    if ($publicId) {
+                        $cloudinary->deleteImage($publicId);
+                    }
                 }
             }
+            if ($project->completion_certificate) {
+                $publicId = $cloudinary->getPublicIdFromUrl($project->completion_certificate);
+                if ($publicId) {
+                    $cloudinary->deleteImage($publicId);
+                }
+            }
+            if ($project->case_study_pdf) {
+                $publicId = $cloudinary->getPublicIdFromUrl($project->case_study_pdf);
+                if ($publicId) {
+                    $cloudinary->deleteImage($publicId);
+                }
+            }
+
             $project->delete();
         }
 

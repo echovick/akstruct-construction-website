@@ -145,6 +145,11 @@ new #[Layout('layout.admin')] class extends Component {
             // Upload featured image to Cloudinary
             $featured_image_path = $cloudinary->uploadImage($this->featured_image, 'projects/featured');
 
+            if (!$featured_image_path) {
+                session()->flash('error', 'Failed to upload featured image. Please check your Cloudinary configuration and try again.');
+                return;
+            }
+
             // Upload gallery images to Cloudinary
             $gallery_paths = [];
             if (!empty($this->gallery_images)) {
@@ -304,7 +309,7 @@ new #[Layout('layout.admin')] class extends Component {
         <!-- Tab Content -->
         <div class="p-4 md:p-6">
             <!-- Basic Information Tab -->
-            <div x-show="$wire.currentTab === 'basic'" class="space-y-6">
+            <div class="space-y-6 {{ $currentTab === 'basic' ? '' : 'hidden' }}">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Title -->
                     <div class="md:col-span-2">
@@ -312,7 +317,7 @@ new #[Layout('layout.admin')] class extends Component {
                             Project Title <span class="text-red-500">*</span>
                         </label>
                         <input type="text" wire:model.live.debounce.300ms="title" id="title"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="Enter project title">
                         @error('title')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -325,7 +330,7 @@ new #[Layout('layout.admin')] class extends Component {
                             Slug <span class="text-red-500">*</span>
                         </label>
                         <input type="text" wire:model="slug" id="slug"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm bg-gray-50"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm bg-gray-50"
                             readonly>
                         <p class="mt-1 text-xs text-gray-500">Auto-generated from title</p>
                         @error('slug')
@@ -339,7 +344,7 @@ new #[Layout('layout.admin')] class extends Component {
                             Short Description
                         </label>
                         <textarea wire:model="short_description" id="short_description" rows="2"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="Brief one-line description"></textarea>
                         <p class="mt-1 text-xs text-gray-500">{{ strlen($short_description) }}/500 characters</p>
                         @error('short_description')
@@ -370,7 +375,7 @@ new #[Layout('layout.admin')] class extends Component {
                             Year <span class="text-red-500">*</span>
                         </label>
                         <input type="number" wire:model="year" id="year" min="1900" max="2100"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
                         @error('year')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -380,7 +385,7 @@ new #[Layout('layout.admin')] class extends Component {
                     <div>
                         <label for="client" class="block text-sm font-medium text-gray-700 mb-1">Client Name</label>
                         <input type="text" wire:model="client" id="client"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
                         @error('client')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -392,7 +397,7 @@ new #[Layout('layout.admin')] class extends Component {
                             Location <span class="text-red-500">*</span>
                         </label>
                         <input type="text" wire:model="location" id="location"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="City, State, Country">
                         @error('location')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -408,7 +413,7 @@ new #[Layout('layout.admin')] class extends Component {
                     <div>
                         <label for="developer" class="block text-sm font-medium text-gray-700 mb-1">Developer</label>
                         <input type="text" wire:model="developer" id="developer"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
                         @error('developer')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -418,7 +423,7 @@ new #[Layout('layout.admin')] class extends Component {
                     <div>
                         <label for="architect" class="block text-sm font-medium text-gray-700 mb-1">Architect</label>
                         <input type="text" wire:model="architect" id="architect"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
                         @error('architect')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -429,7 +434,7 @@ new #[Layout('layout.admin')] class extends Component {
                         <label for="contractor"
                             class="block text-sm font-medium text-gray-700 mb-1">Contractor</label>
                         <input type="text" wire:model="contractor" id="contractor"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
                         @error('contractor')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -438,13 +443,13 @@ new #[Layout('layout.admin')] class extends Component {
             </div>
 
             <!-- Project Details Tab -->
-            <div x-show="$wire.currentTab === 'details'" class="space-y-6">
+            <div class="space-y-6 {{ $currentTab === 'details' ? '' : 'hidden' }}">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Area -->
                     <div>
                         <label for="area" class="block text-sm font-medium text-gray-700 mb-1">Area</label>
                         <input type="text" wire:model="area" id="area"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="e.g., 5,000 sq.m">
                         @error('area')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -455,7 +460,7 @@ new #[Layout('layout.admin')] class extends Component {
                     <div>
                         <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
                         <input type="text" wire:model="duration" id="duration"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="e.g., 18 months">
                         @error('duration')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -467,7 +472,7 @@ new #[Layout('layout.admin')] class extends Component {
                         <label for="floors" class="block text-sm font-medium text-gray-700 mb-1">Number of
                             Floors</label>
                         <input type="text" wire:model="floors" id="floors"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="e.g., G+3">
                         @error('floors')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -512,7 +517,7 @@ new #[Layout('layout.admin')] class extends Component {
                         <label for="completed_at" class="block text-sm font-medium text-gray-700 mb-1">Completion
                             Date</label>
                         <input type="date" wire:model="completed_at" id="completed_at"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm">
                         @error('completed_at')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
@@ -625,7 +630,7 @@ new #[Layout('layout.admin')] class extends Component {
             </div>
 
             <!-- Media & Gallery Tab -->
-            <div x-show="$wire.currentTab === 'media'" class="space-y-6">
+            <div class="space-y-6 {{ $currentTab === 'media' ? '' : 'hidden' }}">
                 <!-- Featured Image -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -707,7 +712,7 @@ new #[Layout('layout.admin')] class extends Component {
                     <label for="video_path" class="block text-sm font-medium text-gray-700 mb-1">Project Video
                         URL</label>
                     <input type="url" wire:model="video_path" id="video_path"
-                        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                        class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                         placeholder="https://www.youtube.com/watch?v=...">
                     <p class="mt-1 text-xs text-gray-500">YouTube or Vimeo URL</p>
                     @error('video_path')
@@ -717,7 +722,7 @@ new #[Layout('layout.admin')] class extends Component {
             </div>
 
             <!-- Content Tab -->
-            <div x-show="$wire.currentTab === 'content'" class="space-y-6">
+            <div class="space-y-6 {{ $currentTab === 'content' ? '' : 'hidden' }}">
                 <!-- Description -->
                 <div>
                     <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
@@ -737,7 +742,7 @@ new #[Layout('layout.admin')] class extends Component {
                     <label for="sustainability_focus"
                         class="block text-sm font-medium text-gray-700 mb-1">Sustainability Focus</label>
                     <textarea wire:model="sustainability_focus" id="sustainability_focus" rows="4"
-                        class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                        class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                         placeholder="Describe the sustainability aspects of this project..."></textarea>
                     @error('sustainability_focus')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -780,14 +785,14 @@ new #[Layout('layout.admin')] class extends Component {
             </div>
 
             <!-- Location & Maps Tab -->
-            <div x-show="$wire.currentTab === 'location'" class="space-y-6">
+            <div class="space-y-6 {{ $currentTab === 'location' ? '' : 'hidden' }}">
                 <div class="grid grid-cols-1 gap-6">
                     <!-- Google Maps URL -->
                     <div>
                         <label for="google_maps_url" class="block text-sm font-medium text-gray-700 mb-1">Google Maps
                             URL</label>
                         <input type="url" wire:model="google_maps_url" id="google_maps_url"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="https://maps.google.com/...">
                         <p class="mt-1 text-xs text-gray-500">Full Google Maps link to project location</p>
                         @error('google_maps_url')
@@ -800,7 +805,7 @@ new #[Layout('layout.admin')] class extends Component {
                         <label for="map_coordinates" class="block text-sm font-medium text-gray-700 mb-1">Map
                             Coordinates</label>
                         <input type="text" wire:model="map_coordinates" id="map_coordinates"
-                            class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
+                            class="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm focus:ring-primary-dark focus:border-primary-dark sm:text-sm"
                             placeholder="Latitude, Longitude (e.g., 9.0579, 7.4951)">
                         <p class="mt-1 text-xs text-gray-500">For embedding maps on project detail page</p>
                         @error('map_coordinates')
@@ -821,7 +826,7 @@ new #[Layout('layout.admin')] class extends Component {
             </div>
 
             <!-- Settings Tab -->
-            <div x-show="$wire.currentTab === 'settings'" class="space-y-6">
+            <div class="space-y-6 {{ $currentTab === 'settings' ? '' : 'hidden' }}">
                 <div class="space-y-6">
                     <!-- Featured Toggle -->
                     <div class="flex items-start">
