@@ -850,7 +850,7 @@ new #[Layout('layout.admin')] class extends Component {
                                 <img src="{{ $featured_image->temporaryUrl() }}"
                                     class="h-full w-auto object-contain rounded-lg">
                             @elseif ($existing_featured_image)
-                                <img src="{{ Storage::url($existing_featured_image) }}"
+                                <img src="{{ $existing_featured_image }}"
                                     class="h-full w-auto object-contain rounded-lg">
                             @else
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -884,8 +884,7 @@ new #[Layout('layout.admin')] class extends Component {
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 @foreach ($existing_gallery_images as $index => $image)
                                     <div class="relative group">
-                                        <img src="{{ Storage::url($image) }}"
-                                            class="h-32 w-full object-cover rounded-lg">
+                                        <img src="{{ $image }}" class="h-32 w-full object-cover rounded-lg">
                                         <button type="button"
                                             wire:click="removeExistingGalleryImage({{ $index }})"
                                             wire:confirm="Are you sure you want to remove this image?"

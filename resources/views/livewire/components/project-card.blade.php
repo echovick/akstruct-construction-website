@@ -2,7 +2,7 @@
 
 <div class="card overflow-hidden group h-full flex flex-col">
     <div class="relative overflow-hidden h-64">
-        <img src="{{ asset($project->featured_image) }}" alt="{{ $project->title }}"
+        <img src="{{ $project->featured_image }}" alt="{{ $project->title }}"
             class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500">
         <div
             class="absolute inset-0 bg-primary-dark bg-opacity-20 group-hover:bg-opacity-0 transition-opacity duration-300">

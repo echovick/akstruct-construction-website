@@ -431,6 +431,9 @@
                     // Skip images that are already placeholders
                     if (this.src.includes(placeholderBaseUrl)) return;
 
+                    // Skip gallery images - they have their own error handling
+                    if (this.classList.contains('gallery-image')) return;
+
                     const width = this.width || 800;
                     const height = this.height || 600;
 

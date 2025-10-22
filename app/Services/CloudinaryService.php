@@ -32,17 +32,17 @@ class CloudinaryService
             $uploadOptions = array_merge($defaultOptions, $options);
 
             // Upload to Cloudinary
-            $result = Cloudinary::upload($file->getRealPath(), $uploadOptions);
+            $result = Cloudinary::uploadApi()->upload($file->getRealPath(), $uploadOptions);
 
             if (!$result) {
                 Log::error('Cloudinary upload returned null for file: ' . $file->getClientOriginalName());
                 return null;
             }
 
-            $uploadedFileUrl = $result->getSecurePath();
+            $uploadedFileUrl = $result['secure_url'] ?? null;
 
             if (!$uploadedFileUrl) {
-                Log::error('Cloudinary result has no secure path for file: ' . $file->getClientOriginalName());
+                Log::error('Cloudinary result has no secure URL for file: ' . $file->getClientOriginalName());
                 return null;
             }
 
@@ -91,7 +91,7 @@ class CloudinaryService
     public function deleteImage(string $publicId): bool
     {
         try {
-            $result = Cloudinary::destroy($publicId);
+            $result = Cloudinary::uploadApi()->destroy($publicId);
 
             if (!$result || !is_array($result)) {
                 Log::error('Cloudinary delete returned invalid result for: ' . $publicId);
@@ -166,17 +166,17 @@ class CloudinaryService
 
             $uploadOptions = array_merge($defaultOptions, $options);
 
-            $result = Cloudinary::upload($file->getRealPath(), $uploadOptions);
+            $result = Cloudinary::uploadApi()->upload($file->getRealPath(), $uploadOptions);
 
             if (!$result) {
                 Log::error('Cloudinary document upload returned null for file: ' . $file->getClientOriginalName());
                 return null;
             }
 
-            $uploadedFileUrl = $result->getSecurePath();
+            $uploadedFileUrl = $result['secure_url'] ?? null;
 
             if (!$uploadedFileUrl) {
-                Log::error('Cloudinary document result has no secure path for file: ' . $file->getClientOriginalName());
+                Log::error('Cloudinary document result has no secure URL for file: ' . $file->getClientOriginalName());
                 return null;
             }
 
@@ -209,9 +209,9 @@ class CloudinaryService
 
             $uploadOptions = array_merge($defaultOptions, $options);
 
-            $result = Cloudinary::upload($file->getRealPath(), $uploadOptions);
+            $result = Cloudinary::uploadApi()->upload($file->getRealPath(), $uploadOptions);
 
-            return $result->getSecurePath();
+            return $result['secure_url'] ?? null;
         } catch (\Exception $e) {
             Log::error('Cloudinary video upload failed: ' . $e->getMessage());
             return null;

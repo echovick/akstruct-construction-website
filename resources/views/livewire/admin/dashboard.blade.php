@@ -293,7 +293,7 @@ new #[Layout('layout.admin')] class extends Component {
                                         <td class="py-3 px-4">
                                             <div class="flex items-center">
                                                 @if ($project->featured_image)
-                                                    <img src="{{ Storage::url($project->featured_image) }}"
+                                                    <img src="{{ $project->featured_image }}"
                                                         alt="{{ $project->title }}"
                                                         class="h-10 w-10 rounded object-cover mr-3">
                                                 @else

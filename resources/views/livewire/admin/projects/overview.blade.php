@@ -274,7 +274,8 @@ new #[Layout('layout.admin')] class extends Component {
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                 <div class="min-w-0">
                     <p class="text-xs lg:text-sm font-medium text-gray-600 break-words">Total Projects</p>
-                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-800 mt-1 lg:mt-2 break-words">{{ $stats['total'] }}</h3>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-gray-800 mt-1 lg:mt-2 break-words">
+                        {{ $stats['total'] }}</h3>
                 </div>
                 <div class="hidden lg:block bg-blue-100 p-3 rounded-full flex-shrink-0">
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,7 +290,8 @@ new #[Layout('layout.admin')] class extends Component {
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                 <div class="min-w-0">
                     <p class="text-xs lg:text-sm font-medium text-gray-600 break-words">Published</p>
-                    <h3 class="text-2xl lg:text-3xl font-bold text-green-600 mt-1 lg:mt-2 break-words">{{ $stats['published'] }}</h3>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-green-600 mt-1 lg:mt-2 break-words">
+                        {{ $stats['published'] }}</h3>
                 </div>
                 <div class="hidden lg:block bg-green-100 p-3 rounded-full flex-shrink-0">
                     <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -304,7 +306,8 @@ new #[Layout('layout.admin')] class extends Component {
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                 <div class="min-w-0">
                     <p class="text-xs lg:text-sm font-medium text-gray-600 break-words">Drafts</p>
-                    <h3 class="text-2xl lg:text-3xl font-bold text-yellow-600 mt-1 lg:mt-2 break-words">{{ $stats['draft'] }}</h3>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-yellow-600 mt-1 lg:mt-2 break-words">
+                        {{ $stats['draft'] }}</h3>
                 </div>
                 <div class="hidden lg:block bg-yellow-100 p-3 rounded-full flex-shrink-0">
                     <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -319,7 +322,8 @@ new #[Layout('layout.admin')] class extends Component {
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                 <div class="min-w-0">
                     <p class="text-xs lg:text-sm font-medium text-gray-600 break-words">Featured</p>
-                    <h3 class="text-2xl lg:text-3xl font-bold text-purple-600 mt-1 lg:mt-2 break-words">{{ $stats['featured'] }}</h3>
+                    <h3 class="text-2xl lg:text-3xl font-bold text-purple-600 mt-1 lg:mt-2 break-words">
+                        {{ $stats['featured'] }}</h3>
                 </div>
                 <div class="hidden lg:block bg-purple-100 p-3 rounded-full flex-shrink-0">
                     <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -487,8 +491,7 @@ new #[Layout('layout.admin')] class extends Component {
                                     <div class="flex-shrink-0">
                                         @if ($project->featured_image)
                                             <img class="h-12 w-12 rounded object-cover"
-                                                src="{{ Storage::url($project->featured_image) }}"
-                                                alt="{{ $project->title }}">
+                                                src="{{ $project->featured_image }}" alt="{{ $project->title }}">
                                         @else
                                             <div
                                                 class="h-12 w-12 rounded bg-gray-200 flex items-center justify-center">
@@ -633,8 +636,7 @@ new #[Layout('layout.admin')] class extends Component {
                             <div class="flex items-start gap-3">
                                 @if ($project->featured_image)
                                     <img class="h-16 w-16 rounded object-cover flex-shrink-0"
-                                        src="{{ Storage::url($project->featured_image) }}"
-                                        alt="{{ $project->title }}">
+                                        src="{{ $project->featured_image }}" alt="{{ $project->title }}">
                                 @else
                                     <div
                                         class="h-16 w-16 rounded bg-gray-200 flex items-center justify-center flex-shrink-0">
