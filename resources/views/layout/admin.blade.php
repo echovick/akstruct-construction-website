@@ -18,6 +18,9 @@
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Trix Editor -->
+    <link rel="stylesheet" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
@@ -114,8 +117,8 @@
                     @csrf
                     <button type="submit"
                         class="w-full text-left px-3 py-2 rounded-md flex items-center hover:bg-primary-light transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
@@ -127,7 +130,7 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex flex-col min-w-0">
         <!-- Header -->
         <header class="bg-white shadow">
             <div class="px-4 py-3 flex justify-between items-center">
@@ -149,16 +152,18 @@
         </header>
 
         <!-- Page Content -->
-        <main class="flex-1 overflow-y-auto p-4 md:p-8">
-            @if (isset($header))
-                <div class="mb-6">
-                    {{ $header }}
-                </div>
-            @else
-                <h1 class="text-2xl font-semibold text-gray-800 mb-6">{{ $title ?? 'Dashboard' }}</h1>
-            @endif
+        <main class="flex-1 overflow-y-auto overflow-x-hidden w-full">
+            <div class="w-full px-4 py-4 md:px-8 md:py-8">
+                @if (isset($header))
+                    <div class="mb-6">
+                        {{ $header }}
+                    </div>
+                @else
+                    <h1 class="text-2xl font-semibold text-gray-800 mb-6">{{ $title ?? 'Dashboard' }}</h1>
+                @endif
 
-            {{ $slot }}
+                {{ $slot }}
+            </div>
         </main>
     </div>
 
@@ -209,15 +214,17 @@
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform"
                             :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div x-show="open" x-transition:enter="dropdown-menu-enter-active"
                         x-transition:enter-start="dropdown-menu-enter-from"
-                        x-transition:leave="dropdown-menu-leave-active" x-transition:leave-end="dropdown-menu-leave-to"
-                        class="submenu-wrapper pl-10 space-y-1">
+                        x-transition:leave="dropdown-menu-leave-active"
+                        x-transition:leave-end="dropdown-menu-leave-to" class="submenu-wrapper pl-10 space-y-1">
                         <a href="{{ route('admin.projects.overview') }}"
-                            class="block px-3 py-2 rounded-md hover:bg-primary-light transition-colors">All Projects</a>
+                            class="block px-3 py-2 rounded-md hover:bg-primary-light transition-colors">All
+                            Projects</a>
                         <a href="{{ route('admin.projects.create') }}"
                             class="block px-3 py-2 rounded-md hover:bg-primary-light transition-colors">Add New</a>
                         <a href="{{ route('admin.projects.categories') }}"
@@ -251,6 +258,36 @@
             sidebarToggle.addEventListener('click', openSidebar);
             closeSidebar.addEventListener('click', closeSidebarFn);
             sidebarOverlay.addEventListener('click', closeSidebarFn);
+        });
+    </script>
+
+    <!-- Trix Editor -->
+    <script src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+
+    <script>
+        // Configure Trix editor for Livewire
+        document.addEventListener('DOMContentLoaded', function() {
+            // Listen for Trix changes and sync with Livewire
+            document.addEventListener('trix-change', function(event) {
+                const editor = event.target;
+                const inputElement = document.getElementById(editor.getAttribute('input'));
+
+                if (inputElement) {
+                    // Update the hidden input value
+                    inputElement.value = editor.value;
+
+                    // Dispatch input event to notify Livewire
+                    inputElement.dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+                }
+            });
+
+            // Prevent file attachments in Trix (optional)
+            document.addEventListener('trix-file-accept', function(event) {
+                event.preventDefault();
+                alert('File uploads are not supported in this editor.');
+            });
         });
     </script>
 
