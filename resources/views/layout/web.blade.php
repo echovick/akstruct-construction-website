@@ -379,17 +379,7 @@
                         Newsletter</h3>
                     <p class="text-gray-300 mb-6">Subscribe to our newsletter for the latest updates on our projects,
                         industry insights, and company news.</p>
-                    <form action="#" method="POST" class="space-y-4">
-                        <div class="relative">
-                            <input type="email" name="email" placeholder="Your Email Address"
-                                class="w-full px-4 py-3 rounded-lg bg-primary bg-opacity-50 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
-                            <button type="submit"
-                                class="absolute right-0 top-0 h-full px-4 bg-secondary text-white rounded-r-lg hover:bg-secondary-dark transition-colors duration-300">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                        <button type="submit" class="hidden">Subscribe</button>
-                    </form>
+                    <livewire:components.newsletter-form />
                 </div>
             </div>
 

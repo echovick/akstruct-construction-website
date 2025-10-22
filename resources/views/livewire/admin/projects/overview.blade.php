@@ -100,7 +100,7 @@ new #[Layout('layout.admin')] class extends Component {
                     $cloudinary->deleteImage($publicId);
                 }
             }
-            if ($project->gallery_images) {
+            if ($project->gallery_images && is_array($project->gallery_images)) {
                 foreach ($project->gallery_images as $image) {
                     $publicId = $cloudinary->getPublicIdFromUrl($image);
                     if ($publicId) {
@@ -144,7 +144,7 @@ new #[Layout('layout.admin')] class extends Component {
                     $cloudinary->deleteImage($publicId);
                 }
             }
-            if ($project->gallery_images) {
+            if ($project->gallery_images && is_array($project->gallery_images)) {
                 foreach ($project->gallery_images as $image) {
                     $publicId = $cloudinary->getPublicIdFromUrl($image);
                     if ($publicId) {
