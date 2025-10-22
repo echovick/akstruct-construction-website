@@ -7,8 +7,8 @@
         <div
             class="absolute inset-0 bg-primary-dark bg-opacity-20 group-hover:bg-opacity-0 transition-opacity duration-300">
         </div>
-        <div class="absolute bottom-0 left-0 p-4 bg-primary bg-opacity-90 text-white">
-            <span class="inline-block">{{ $project->category }}</span>
+        <div class="absolute top-4 left-4 bg-secondary px-3 py-1 rounded shadow-md">
+            <span class="inline-block text-white text-sm font-semibold">{{ $project->category }}</span>
         </div>
     </div>
     <div class="p-6 flex-grow">

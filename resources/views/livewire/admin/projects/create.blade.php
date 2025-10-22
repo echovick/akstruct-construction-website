@@ -105,41 +105,41 @@ new #[Layout('layout.admin')] class extends Component {
 
     public function save($publish = false)
     {
-        if ($publish) {
-            $this->is_published = true;
-        }
-
-        $validatedData = $this->validate([
-            'title' => 'required|min:3|max:255',
-            'slug' => 'required|unique:projects,slug|max:255',
-            'short_description' => 'nullable|max:500',
-            'description' => 'required',
-            'location' => 'required|max:255',
-            'year' => 'required|digits:4',
-            'client' => 'nullable|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'developer' => 'nullable|max:255',
-            'architect' => 'nullable|max:255',
-            'contractor' => 'nullable|max:255',
-            'area' => 'nullable|max:100',
-            'duration' => 'nullable|max:100',
-            'floors' => 'nullable|max:50',
-            'cost' => 'nullable|numeric|min:0',
-            'status' => 'required|in:draft,planning,in_progress,completed,on_hold',
-            'completed_at' => 'nullable|date',
-            'featured_image' => 'required|image|max:5120',
-            'gallery_images.*' => 'nullable|image|max:5120',
-            'video_path' => 'nullable|url',
-            'completion_certificate' => 'nullable|file|mimes:pdf|max:10240',
-            'case_study_pdf' => 'nullable|file|mimes:pdf|max:10240',
-            'sustainability_focus' => 'nullable',
-            'map_coordinates' => 'nullable|max:255',
-            'google_maps_url' => 'nullable|url',
-            'is_featured' => 'boolean',
-            'is_published' => 'boolean',
-        ]);
-
         try {
+            if ($publish) {
+                $this->is_published = true;
+            }
+
+            $validatedData = $this->validate([
+                'title' => 'required|min:3|max:255',
+                'slug' => 'required|unique:projects,slug|max:255',
+                'short_description' => 'nullable|max:500',
+                'description' => 'required',
+                'location' => 'required|max:255',
+                'year' => 'required|digits:4',
+                'client' => 'nullable|max:255',
+                'category_id' => 'required|exists:categories,id',
+                'developer' => 'nullable|max:255',
+                'architect' => 'nullable|max:255',
+                'contractor' => 'nullable|max:255',
+                'area' => 'nullable|max:100',
+                'duration' => 'nullable|max:100',
+                'floors' => 'nullable|max:50',
+                'cost' => 'nullable|numeric|min:0',
+                'status' => 'required|in:draft,planning,in_progress,completed,on_hold',
+                'completed_at' => 'nullable|date',
+                'featured_image' => 'required|image|max:10240',
+                'gallery_images.*' => 'nullable|image|max:10240',
+                'video_path' => 'nullable|url',
+                'completion_certificate' => 'nullable|file|mimes:pdf|max:10240',
+                'case_study_pdf' => 'nullable|file|mimes:pdf|max:10240',
+                'sustainability_focus' => 'nullable',
+                'map_coordinates' => 'nullable|max:255',
+                'google_maps_url' => 'nullable|url',
+                'is_featured' => 'boolean',
+                'is_published' => 'boolean',
+            ]);
+
             $cloudinary = app(CloudinaryService::class);
 
             // Upload featured image to Cloudinary
@@ -147,6 +147,7 @@ new #[Layout('layout.admin')] class extends Component {
 
             if (!$featured_image_path) {
                 session()->flash('error', 'Failed to upload featured image. Please check your Cloudinary configuration and try again.');
+                \Log::error('Featured image upload failed for project: ' . $this->title);
                 return;
             }
 
@@ -154,17 +155,24 @@ new #[Layout('layout.admin')] class extends Component {
             $gallery_paths = [];
             if (!empty($this->gallery_images)) {
                 $gallery_paths = $cloudinary->uploadMultipleImages($this->gallery_images, 'projects/gallery');
+                \Log::info('Uploaded ' . count($gallery_paths) . ' gallery images for project: ' . $this->title);
             }
 
             // Upload documents to Cloudinary
             $certificate_path = null;
             if ($this->completion_certificate) {
                 $certificate_path = $cloudinary->uploadDocument($this->completion_certificate, 'projects/certificates');
+                if (!$certificate_path) {
+                    \Log::warning('Failed to upload completion certificate for project: ' . $this->title);
+                }
             }
 
             $case_study_path = null;
             if ($this->case_study_pdf) {
                 $case_study_path = $cloudinary->uploadDocument($this->case_study_pdf, 'projects/case-studies');
+                if (!$case_study_path) {
+                    \Log::warning('Failed to upload case study PDF for project: ' . $this->title);
+                }
             }
 
             // Filter and prepare data
@@ -204,10 +212,21 @@ new #[Layout('layout.admin')] class extends Component {
                 'is_published' => $this->is_published,
             ]);
 
+            \Log::info('Project created successfully: ' . $project->id . ' - ' . $project->title);
             session()->flash('message', 'Project created successfully!');
             return redirect()->route('admin.projects.overview');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Let Laravel handle validation errors naturally
+            throw $e;
         } catch (\Exception $e) {
-            session()->flash('error', 'Error creating project: ' . $e->getMessage());
+            \Log::error('Error creating project', [
+                'title' => $this->title ?? 'N/A',
+                'error' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            session()->flash('error', 'Error creating project: ' . $e->getMessage() . '. Please check the logs for more details.');
         }
     }
 
@@ -252,7 +271,43 @@ new #[Layout('layout.admin')] class extends Component {
         </div>
     </div>
 
-    <!-- Error Messages -->
+    <!-- Success Message -->
+    @if (session()->has('message'))
+        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-md">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-green-700">{{ session('message') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Error Message from Session -->
+    @if (session()->has('error'))
+        <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-md">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm text-red-700">{{ session('error') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Validation Error Messages -->
     @if ($errors->any())
         <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-md">
             <div class="flex">

@@ -412,7 +412,7 @@ new #[Layout('layout.web')] class extends Component {
                                     class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent opacity-60 group-hover:opacity-80 transition-all duration-300">
                                 </div>
                                 <div class="absolute top-4 left-4">
-                                    <div class="bg-accent px-3 py-1 text-sm font-semibold rounded shadow-md">
+                                    <div class="bg-secondary px-3 py-1 text-sm font-semibold text-white rounded shadow-md">
                                         {{ $project->category->name ?? 'Commercial' }}
                                     </div>
                                 </div>
