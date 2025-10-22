@@ -259,68 +259,74 @@ new #[Layout('layout.web')] class extends Component {
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
                             </svg>
                         </div>
+                    @endforeach
                 </div>
-    @endforeach
 
+                <!-- Lightbox Modal -->
+                <div x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0" @click="closeLightbox()"
+                    @keydown.escape.window="closeLightbox()"
+                    class="fixed inset-0 z-50 bg-black bg-opacity-95 flex items-center justify-center p-4">
 
-    <!-- Lightbox Modal -->
-    <div x-show="isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="closeLightbox()"
-        @keydown.escape.window="closeLightbox()"
-        class="fixed inset-0 z-50 bg-black bg-opacity-95 flex items-center justify-center p-4">
+                    <!-- Close Button -->
+                    <button @click="closeLightbox()"
+                        class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
+                        </svg>
+                    </button>
 
-        <!-- Close Button -->
-        <button @click="closeLightbox()"
-            class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                </path>
-            </svg>
-        </button>
+                    <!-- Navigation Arrows -->
+                    <button @click.stop="previousImage()"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition bg-black bg-opacity-50 rounded-full p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
 
-        <!-- Navigation Arrows -->
-        <button @click.stop="previousImage()"
-            class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition bg-black bg-opacity-50 rounded-full p-2">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
-                </path>
-            </svg>
-        </button>
+                    <button @click.stop="nextImage()"
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition bg-black bg-opacity-50 rounded-full p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
 
-        <button @click.stop="nextImage()"
-            class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition bg-black bg-opacity-50 rounded-full p-2">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                </path>
-            </svg>
-        </button>
+                    <!-- Image Container -->
+                    <div @click.stop class="relative max-w-7xl max-h-[90vh] mx-auto">
+                        <img :src="currentImage.src" :alt="currentImage.alt"
+                            class="max-w-full max-h-[90vh] object-contain"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 transform scale-95"
+                            x-transition:enter-end="opacity-100 transform scale-100">
 
-        <!-- Image Container -->
-        <div @click.stop class="relative max-w-7xl max-h-[90vh] mx-auto">
-            <img :src="currentImage.src" :alt="currentImage.alt" class="max-w-full max-h-[90vh] object-contain"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform scale-95"
-                x-transition:enter-end="opacity-100 transform scale-100">
+                        <!-- Image Caption -->
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                            <p class="text-white text-lg font-semibold" x-text="currentImage.alt"></p>
+                            <p class="text-gray-300 text-sm mt-1" x-text="`${currentIndex + 1} / ${images.length}`">
+                            </p>
+                        </div>
+                    </div>
 
-            <!-- Image Caption -->
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-                <p class="text-white text-lg font-semibold" x-text="currentImage.alt"></p>
-                <p class="text-gray-300 text-sm mt-1" x-text="`${currentIndex + 1} / ${images.length}`"></p>
-            </div>
-        </div>
-
-        <!-- Thumbnail Strip -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full px-4">
-            <template x-for="(image, index) in images" :key="index">
-                <button @click.stop="setCurrentImage(index)" :class="{ 'ring-2 ring-white': currentIndex === index }"
-                    class="flex-shrink-0 w-16 h-16 rounded overflow-hidden opacity-70 hover:opacity-100 transition">
-                    <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover">
-                </button>
-            </template>
-        </div>
-    </div>
-    </section>
+                    <!-- Thumbnail Strip -->
+                    <div
+                        class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full px-4">
+                        <template x-for="(image, index) in images" :key="index">
+                            <button @click.stop="setCurrentImage(index)"
+                                :class="{ 'ring-2 ring-white': currentIndex === index }"
+                                class="flex-shrink-0 w-16 h-16 rounded overflow-hidden opacity-70 hover:opacity-100 transition">
+                                <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover">
+                            </button>
+                        </template>
+                    </div>
+                </div>
+        </section>
     @endif
 
     <!-- Technical Specifications -->
