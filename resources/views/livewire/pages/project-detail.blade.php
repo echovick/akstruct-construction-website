@@ -180,7 +180,7 @@ new #[Layout('layout.web')] class extends Component {
                                 </div>
                             @endif
 
-                            @if ($project->cost)
+                            @if ($project->cost && $project->cost > 0)
                                 <div>
                                     <dt class="text-sm font-medium text-gray-500">Project Value</dt>
                                     <dd class="mt-1 text-lg font-semibold text-gray-900">
