@@ -45,7 +45,7 @@ new #[Layout('layout.web')] class extends Component {
             'phone2' => Setting::getValue('company_phone_2', '07082323113'),
             'email' => Setting::getValue('company_email', 'akstructltd@gmail.com'),
             'instagram' => Setting::getValue('instagram_handle', '@akstruct_africa'),
-            'instagramUrl' => Setting::getValue('instagram_url', 'https://www.instagram.com/akstruct_africa?igsh=dTB0YWY2cjAzeDVv'),
+            'instagramUrl' => Setting::getValue('instagram_url', 'https://www.instagram.com/akstruct_ltd?igsh=MTNueWcxa2ZsNWp4Mw=='),
             'officeHours' => Setting::getValue('office_hours', 'Monday - Friday: 8:00 AM - 5:00 PM | Saturday: 9:00 AM - 1:00 PM'),
             'mapEmbedUrl' => Setting::getValue('map_embed_url', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.9262738913984!2d7.4102385!3d9.062379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0babd4d6c2e5%3A0x82d36e1c3f08c0d1!2sGlobal%20Plaza%2C%20Jabi%2C%20Abuja!5e0!3m2!1sen!2sng!4v1651234567890!5m2!1sen!2sng'),
         ];
